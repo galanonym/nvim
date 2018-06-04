@@ -22,8 +22,7 @@ Install tern
 
 Install eslint
 
-    >npm install -g eslint
-    >npm install -g eslint
+    >npm install -g eslint eslint-plugin-import eslint-config-airbnb-base
 
 Install ranger
 
