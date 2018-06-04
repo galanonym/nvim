@@ -1,13 +1,17 @@
 call plug#begin()
+"COLORSCHEME
+Plug 'morhetz/gruvbox' "colorscheme
+
+"ESSENTIAL
 Plug 'tpope/vim-sensible' "sensible defaults
 Plug 'tpope/vim-unimpaired' "use [ and ] commands
 Plug 'tpope/vim-commentary' "use gcc to comment
-Plug 'tpope/vim-vinegar' "better netrw
-Plug 'morhetz/gruvbox' "colorscheme
 Plug 'easymotion/vim-easymotion' "better line jumps
+" Plug 'tpope/vim-vinegar' "better netrw
 
+"MISC
+Plug 'tpope/vim-sleuth' "automatically set tabwidth
 Plug 'jiangmiao/auto-pairs' "autoclose brackets, quotes and parenthesis
-Plug 'pangloss/vim-javascript' "javascript syntax
 Plug 'farmergreg/vim-lastplace' "remember cursor position
 Plug 'ctrlpvim/ctrlp.vim' "fuzzy search files and buffers
 Plug 'vim-airline/vim-airline' "better bottom line
@@ -15,19 +19,24 @@ Plug 'Yggdroot/indentLine' "guidelines for indents
 Plug 'itchyny/vim-cursorword' "underline word under cursor
 " Plug '907th/vim-auto-save' "autosave after edit
 
-" Plug 'maralla/completor.vim' "autocomplete with tern
-" Plug 'Valloric/YouCompleteMe', { 'do': './install.py --tern-completer' } "better autocomplete, run 'do' in /Plugged/YouCompleteMe if errors
+"SYNTAX
+Plug 'pangloss/vim-javascript' "javascript syntax
 
+"COMPLETION
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 Plug 'carlitux/deoplete-ternjs', { 'for': ['javascript', 'javascript.jsx'] }
+
+"LINTING
 Plug 'w0rp/ale' "automatic linting
 Plug 'prettier/vim-prettier', { 'do': 'npm install' } "Pretty automatic javascript
-" Plug 'scrooloose/nerdtree' "file explorer
-Plug 'francoiscabrol/ranger.vim' "file explorer
-Plug 'rbgrouleff/bclose.vim' "needed by ranger.vim
 
+"FILE EXPLORER
+Plug 'francoiscabrol/ranger.vim' "file explorer
+Plug 'rbgrouleff/bclose.vim' "needed by ranger.vim in neovim
+
+"SNIPPETS
 Plug 'SirVer/ultisnips' "snippets
-Plug 'honza/vim-snippets'
+Plug 'honza/vim-snippets' "snippet library
 call plug#end()
 
 "BASICS
@@ -79,17 +88,7 @@ set wildignore+=*/_/*,*/node_modules/*,*/components/*,*.zip
 let g:ctrlp_working_path_mode='ra'
 
 "AUTOSAVE PLUGIN
-let g:auto_save = 1 "enable on start
-
-"YOU COMPLETE ME TERN
-" set completeopt-=preview
-" let g:ycm_add_preview_to_completeopt=0
+" let g:auto_save = 1 "enable on start
 
 "DEOPLETE
 let g:deoplete#enable_at_startup = 1
-
-"NERDTREE
-" nmap <F2> :NERDTreeFind<CR>
-" let g:NERDTreeWinSize=35
-" let NERDTreeShowHidden=1 "show .hidden files
-

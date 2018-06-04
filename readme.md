@@ -2,13 +2,46 @@
 
 Run git clone in ~ folder
 
-    mkdir -p ~/.config/nvim && git clone https://github.com/galanonym/nvim.git ~/.config/nvim
+    >mkdir -p ~/.config/nvim && git clone https://github.com/galanonym/nvim.git ~/.config/nvim
 
 Open nvim, ignore no plugin errors, run
 
-    nvim :PlugInstall
+    :PlugInstall
+
+If :echo has("python3") returns 0
+
+    >pip3 install --user neovim 
+
+Run for Deoplete
+
+    :UpdateRemotePlugins
+
+Install tern
+
+    >npm install -g tern
+
+Install eslint
+
+    >npm install -g eslint
+    >npm install -g eslint
+
+Install ranger
+
+    >sudo apt install ranger caca-utils highlight atool w3m poppler-utils mediainfo
+    >ranger --copy-config=scope
 
 ### Bindings to remember
+
+Ranger
+ 
+    <F2> - Load up Ranger
+
+Auto-Pairs
+
+    i'<m-e> - wrap world in '
+    i(<m-e> - wrap world in (
+    i{<m-e> - wrap world in {
+    etc.
 
 UltiSnips
 
