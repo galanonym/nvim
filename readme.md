@@ -55,3 +55,28 @@ CtrlP
     <c-f> - change mode when CtrlP is open
     <c-k> - move up when CtrlP is open
     <c-j> - move down when CtrlP is open
+
+Prettier
+
+    <l-p> - run prettier
+    // @format - add this to top of a file to autorun on save
+
+Deoplete with Tern
+
+    .tern-project - remember to have a default .tern-project file in project root directory
+
+    ```
+    {
+      "plugins": {
+        "es-modules": {},
+        "node": {}
+      },
+      "libs": [
+        "ecma5",
+        "ecma6",
+        "browser",
+        "jquery"
+      ],
+      "ecmaVersion": 6
+    }
+    ```
