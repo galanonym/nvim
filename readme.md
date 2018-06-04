@@ -65,18 +65,18 @@ Deoplete with Tern
 
     .tern-project - remember to have a default .tern-project file in project root directory
 
-    ```
-    {
-      "plugins": {
-        "es-modules": {},
-        "node": {}
-      },
-      "libs": [
-        "ecma5",
-        "ecma6",
-        "browser",
-        "jquery"
-      ],
-      "ecmaVersion": 6
-    }
-    ```
+```
+{
+  "plugins": {
+    "es-modules": {},
+    "node": {}
+  },
+  "libs": [
+    "ecma5",
+    "ecma6",
+    "browser",
+    "jquery"
+  ],
+  "ecmaVersion": 6
+}
+```
