@@ -12,12 +12,14 @@ Plug 'easymotion/vim-easymotion' "better line jumps
 "MISC
 Plug 'tpope/vim-sleuth' "automatically set tabwidth
 Plug 'jiangmiao/auto-pairs' "autoclose brackets, quotes and parenthesis
-Plug 'farmergreg/vim-lastplace' "remember cursor position
 Plug 'ctrlpvim/ctrlp.vim' "fuzzy search files and buffers
 Plug 'vim-airline/vim-airline' "better bottom line
 Plug 'Yggdroot/indentLine' "guidelines for indents
 Plug 'itchyny/vim-cursorword' "underline word under cursor
-" Plug '907th/vim-auto-save' "autosave after edit
+
+"SESSIONS
+Plug 'farmergreg/vim-lastplace' "remember cursor position vertically
+Plug 'thaerkh/vim-workspace' "session management, undo history, auto-save 
 
 "SYNTAX
 Plug 'pangloss/vim-javascript' "javascript syntax
@@ -65,6 +67,7 @@ hi MatchParen cterm=underline ctermbg=none ctermfg=none
 autocmd BufNewFile,BufRead * setlocal formatoptions-=cro "disable continuation of comments
 
 "COLORSCHEME
+set termguicolors "add 256 color support
 set background=dark "dark gruvbox theme
 let g:gruvbox_italic=1 "enable italic for gruvbox, must be before colorscheme
 let g:gruvbox_contrast_dark='hard' "darker gruvbox
@@ -86,9 +89,16 @@ nmap <Space> <Plug>(easymotion-s)
 "CTRLP
 set wildignore+=*/_/*,*/node_modules/*,*/components/*,*.zip
 let g:ctrlp_working_path_mode='ra'
-
-"AUTOSAVE PLUGIN
-" let g:auto_save = 1 "enable on start
+nmap <F3> :CtrlPBuffer<CR>
 
 "DEOPLETE
 let g:deoplete#enable_at_startup = 1
+
+"ALE + ESLINT
+nmap <silent> <Right> :ALENext<cr>
+nmap <silent> <Left> :ALEPrevious<cr>
+
+"WORKSPACE
+let g:workspace_autosave_untrailspaces=0 "do not automatically remove spaces
+let g:workspace_session_name='.nvim-session'
+let g:workspace_undodir='~/.config/.temp/undodir'

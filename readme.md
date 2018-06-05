@@ -50,15 +50,25 @@ UltiSnips
 
 CtrlP
 
+    <F3> - open CtrlP buffers
     <c-p> - open CtrlP
     <c-f> - change mode when CtrlP is open
     <c-k> - move up when CtrlP is open
     <c-j> - move down when CtrlP is open
 
+Workspace
+
+    :ToggleWorkspace - creates .Session.vim and .undodir, saves everything from now on
+
 Prettier
 
     <l-p> - run prettier
     // @format - add this to top of a file to autorun on save
+
+ALE + ESLint
+
+    <l>aj - jump to next error 
+    <l>ak - jump to prev error 
 
 Deoplete with Tern
 
