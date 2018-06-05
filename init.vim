@@ -101,4 +101,4 @@ nmap <silent> <Left> :ALEPrevious<cr>
 "WORKSPACE
 let g:workspace_autosave_untrailspaces=0 "do not automatically remove spaces
 let g:workspace_session_name='.nvim-session'
-let g:workspace_undodir='~/.config/.temp/undodir'
+let g:workspace_undodir='~/.config/.undodir-global'

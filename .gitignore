@@ -1,4 +1,8 @@
 plugged/
 .netrwhist
 .nvim-session
-.temp/
+
+# exclude everything
+.undodir-global/*
+# exception to the rule
+!.undodir-global/.gitkeep 
