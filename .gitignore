@@ -1,4 +1,3 @@
 plugged/
 .netrwhist
-.nvim-session
-.nvim-undodir/
+.session

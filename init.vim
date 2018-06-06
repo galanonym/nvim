@@ -1,6 +1,6 @@
 call plug#begin()
 "COLORSCHEME
-Plug 'morhetz/gruvbox' "colorscheme
+Plug 'sjl/badwolf' "colorscheme
 
 "ESSENTIAL
 Plug 'tpope/vim-sensible' "sensible defaults
@@ -46,6 +46,7 @@ call plug#end()
 set hidden "files will be hidden and not closed when buffer changes
 set encoding=utf8
 set title "set filename in window title tab
+set clipboard=unnamedplus "use system clipboard for yank
 
 "BACKUP
 set nobackup "get rid of annoying ~file
@@ -57,9 +58,6 @@ inoremap jj <ESC>
 nmap <F2> :Ranger<CR>
 " nmap <F2> :Exp<CR>
 
-"NETRW
-let g:netrw_liststyle = 3 "tree list style
-
 "THEME
 set number "line numbers
 set cursorline "highlight line at cursor position
@@ -70,10 +68,9 @@ autocmd BufNewFile,BufRead * setlocal formatoptions-=cro "disable continuation o
 
 "COLORSCHEME
 set termguicolors "add 256 color support
-set background=dark "dark gruvbox theme
-let g:gruvbox_italic=1 "enable italic for gruvbox, must be before colorscheme
-let g:gruvbox_contrast_dark='hard' "darker gruvbox
-colorscheme gruvbox
+colorscheme badwolf
+" change comments to italic, must come after colorscheme
+highlight Comment gui=italic 
 
 "TABS
 set expandtab "spaces instead of tabs
@@ -83,6 +80,9 @@ set tabstop=2
 "SEARCH
 set showmatch "highlight search
 set hlsearch "highlight stays after search
+
+"NETRW
+let g:netrw_liststyle = 3 "tree list style
 
 "AUTOSAVE
 let g:auto_save=1
