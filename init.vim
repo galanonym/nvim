@@ -7,19 +7,20 @@ Plug 'tpope/vim-sensible' "sensible defaults
 Plug 'tpope/vim-unimpaired' "use [ and ] commands
 Plug 'tpope/vim-commentary' "use gcc to comment
 Plug 'easymotion/vim-easymotion' "better line jumps
-" Plug 'tpope/vim-vinegar' "better netrw
 
 "MISC
-Plug 'tpope/vim-sleuth' "automatically set tabwidth
+" Plug 'tpope/vim-sleuth' "automatically set tabwidth
 Plug 'jiangmiao/auto-pairs' "autoclose brackets, quotes and parenthesis
 Plug 'ctrlpvim/ctrlp.vim' "fuzzy search files and buffers
 Plug 'vim-airline/vim-airline' "better bottom line
 Plug 'Yggdroot/indentLine' "guidelines for indents
 Plug 'itchyny/vim-cursorword' "underline word under cursor
+Plug 'tpope/vim-repeat' "more . repeats for other plugins
+Plug '907th/vim-auto-save' "autosave after edit
 
 "SESSIONS
+Plug 'tpope/vim-obsession' "manage sessions
 Plug 'farmergreg/vim-lastplace' "remember cursor position vertically
-Plug 'thaerkh/vim-workspace' "session management, undo history, auto-save 
 
 "SYNTAX
 Plug 'pangloss/vim-javascript' "javascript syntax
@@ -54,6 +55,7 @@ set noswapfile
 "MAP
 inoremap jj <ESC>
 nmap <F2> :Ranger<CR>
+" nmap <F2> :Exp<CR>
 
 "NETRW
 let g:netrw_liststyle = 3 "tree list style
@@ -82,9 +84,16 @@ set tabstop=2
 set showmatch "highlight search
 set hlsearch "highlight stays after search
 
+"AUTOSAVE
+let g:auto_save=1
+
 "EASYMOTION
 "two characters easymotion line jumps
 nmap <Space> <Plug>(easymotion-s)
+
+"AIRLINE
+let g:airline#extensions#tabline#enabled=1 "enable tabline on the top
+let g:airline#extensions#tabline#formatter='unique_tail' "change default tabline format
 
 "CTRLP
 set wildignore+=*/_/*,*/node_modules/*,*/components/*,*.zip
@@ -97,8 +106,3 @@ let g:deoplete#enable_at_startup = 1
 "ALE + ESLINT
 nmap <silent> <Right> :ALENext<cr>
 nmap <silent> <Left> :ALEPrevious<cr>
-
-"WORKSPACE
-let g:workspace_autosave_untrailspaces=0 "do not automatically remove spaces
-let g:workspace_session_name='.nvim-session'
-let g:workspace_undodir='.nvim-undodir'

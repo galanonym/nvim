@@ -31,6 +31,12 @@ Install ranger
 
 ### Bindings to remember
 
+Obsession
+
+    :Obsession .session - start session in .session file
+    :Obsession! - delete session
+    :nvim -S .session - load session from file
+
 Ranger
  
     <F2> - Load up Ranger
