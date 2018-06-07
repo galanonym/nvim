@@ -13,6 +13,7 @@ Plug 'easymotion/vim-easymotion' "better line jumps
 Plug 'jiangmiao/auto-pairs' "autoclose brackets, quotes and parenthesis
 Plug 'ctrlpvim/ctrlp.vim' "fuzzy search files and buffers
 Plug 'vim-airline/vim-airline' "better bottom line
+Plug 'vim-airline/vim-airline-themes' "add themes for airline
 Plug 'Yggdroot/indentLine' "guidelines for indents
 Plug 'itchyny/vim-cursorword' "underline word under cursor
 Plug 'tpope/vim-repeat' "more . repeats for other plugins
