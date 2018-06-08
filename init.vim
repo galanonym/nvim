@@ -38,6 +38,9 @@ Plug 'prettier/vim-prettier', { 'do': 'npm install' } "Pretty automatic javascri
 Plug 'francoiscabrol/ranger.vim' "file explorer
 Plug 'rbgrouleff/bclose.vim' "needed by ranger.vim in neovim
 
+"SEARCH
+Plug 'jremmen/vim-ripgrep'
+
 "SNIPPETS
 Plug 'SirVer/ultisnips' "snippets
 Plug 'honza/vim-snippets' "snippet library
@@ -86,7 +89,7 @@ set hlsearch "highlight stays after search
 let g:netrw_liststyle = 3 "tree list style
 
 "AUTOSAVE
-let g:auto_save=1
+" let g:auto_save=1
 
 "EASYMOTION
 "two characters easymotion line jumps
@@ -102,7 +105,8 @@ let g:ctrlp_working_path_mode='ra'
 nmap <F3> :CtrlPBuffer<CR>
 
 "DEOPLETE
-let g:deoplete#enable_at_startup = 1
+let g:deoplete#enable_at_startup=1
+let g:deoplete#sources#ternjs#omit_object_prototype=0 " Do not show object.prototype suggestions
 
 "ALE + ESLINT
 nmap <silent> <Right> :ALENext<cr>

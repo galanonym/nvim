@@ -29,6 +29,12 @@ Install ranger
     >sudo apt install ranger caca-utils highlight atool w3m poppler-utils mediainfo
     >ranger --copy-config=scope
 
+Install ripgrep
+
+    >cd ~/.temp
+    >wget https://github.com/BurntSushi/ripgrep/releases/download/0.8.1/ripgrep_0.8.1_amd64.deb
+    >sudo dpkg -i ripgrep_0.8.1_amd64.deb
+
 ### Bindings to remember
 
 Obsession
@@ -36,6 +42,12 @@ Obsession
     :Obsession .session - start session in .session file
     :Obsession! - delete session
     :nvim -S .session - load session from file
+
+RipGrep
+
+    :Rg - search for word under cursor
+    :Rg word - find word in files
+    :Rg '\$some pattern' - find pattern in files
 
 Ranger
  
