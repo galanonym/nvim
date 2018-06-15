@@ -46,6 +46,7 @@ Obsession
 RipGrep
 
     :Rg - search for word under cursor
+    :ccl - close quickfix window
     :Rg word - find word in files
     :Rg '\$some pattern' - find pattern in files
 

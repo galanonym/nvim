@@ -9,7 +9,7 @@ Plug 'tpope/vim-commentary' "use gcc to comment
 Plug 'easymotion/vim-easymotion' "better line jumps
 
 "MISC
-" Plug 'tpope/vim-sleuth' "automatically set tabwidth
+Plug 'tpope/vim-sleuth' "automatically set tabwidth
 Plug 'jiangmiao/auto-pairs' "autoclose brackets, quotes and parenthesis
 Plug 'ctrlpvim/ctrlp.vim' "fuzzy search files and buffers
 Plug 'vim-airline/vim-airline' "better bottom line
@@ -35,8 +35,9 @@ Plug 'w0rp/ale' "automatic linting
 Plug 'prettier/vim-prettier', { 'do': 'npm install' } "Pretty automatic javascript
 
 "FILE EXPLORER
-Plug 'francoiscabrol/ranger.vim' "file explorer
-Plug 'rbgrouleff/bclose.vim' "needed by ranger.vim in neovim
+" Plug 'francoiscabrol/ranger.vim' "file explorer
+" Plug 'rbgrouleff/bclose.vim' "needed by ranger.vim in neovim
+Plug 'scrooloose/nerdtree'
 
 "SEARCH
 Plug 'jremmen/vim-ripgrep'
@@ -59,8 +60,8 @@ set noswapfile
 
 "MAP
 inoremap jj <ESC>
-nmap <F2> :Ranger<CR>
-" nmap <F2> :Exp<CR>
+" nmap <F2> :Ranger<cr>
+nmap <F2> :NERDTreeFind<cr>
 
 "THEME
 set number "line numbers
@@ -77,9 +78,9 @@ colorscheme badwolf
 highlight Comment gui=italic 
 
 "TABS
-set expandtab "spaces instead of tabs
-set shiftwidth=2 "one tab 2 spaces
-set tabstop=2
+" set expandtab "spaces instead of tabs
+" set shiftwidth=2 "one tab 2 spaces
+" set tabstop=2
 
 "SEARCH
 set showmatch "highlight search
@@ -87,6 +88,8 @@ set hlsearch "highlight stays after search
 
 "NETRW
 let g:netrw_liststyle = 3 "tree list style
+let g:netrw_winsize=25 "winsize 25%
+let g:netrw_browse_split=4
 
 "AUTOSAVE
 " let g:auto_save=1
@@ -102,7 +105,7 @@ let g:airline#extensions#tabline#formatter='unique_tail' "change default tabline
 "CTRLP
 set wildignore+=*/_/*,*/node_modules/*,*/components/*,*.zip
 let g:ctrlp_working_path_mode='ra'
-nmap <F3> :CtrlPBuffer<CR>
+nmap <F3> :CtrlPBuffer<cr>
 
 "DEOPLETE
 let g:deoplete#enable_at_startup=1
@@ -111,3 +114,6 @@ let g:deoplete#sources#ternjs#omit_object_prototype=0 " Do not show object.proto
 "ALE + ESLINT
 nmap <silent> <Right> :ALENext<cr>
 nmap <silent> <Left> :ALEPrevious<cr>
+
+"NERDTREE
+let NERDTreeShowHidden=1 "show .hidden files
