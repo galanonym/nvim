@@ -14,10 +14,11 @@ Plug 'jiangmiao/auto-pairs' "autoclose brackets, quotes and parenthesis
 Plug 'ctrlpvim/ctrlp.vim' "fuzzy search files and buffers
 Plug 'vim-airline/vim-airline' "better bottom line
 Plug 'vim-airline/vim-airline-themes' "add themes for airline
-Plug 'Yggdroot/indentLine' "guidelines for indents
+Plug 'nathanaelkane/vim-indent-guides' "guidelines for indents
 Plug 'itchyny/vim-cursorword' "underline word under cursor
 Plug 'tpope/vim-repeat' "more . repeats for other plugins
-Plug '907th/vim-auto-save' "autosave after edit
+Plug 'wesQ3/vim-windowswap' "swap window plugin
+Plug 'terryma/vim-smooth-scroll' "smooth scroll
 
 "SESSIONS
 Plug 'tpope/vim-obsession' "manage sessions
@@ -25,6 +26,9 @@ Plug 'farmergreg/vim-lastplace' "remember cursor position vertically
 
 "SYNTAX
 Plug 'pangloss/vim-javascript' "javascript syntax
+Plug 'tbastos/vim-lua' "nicer lua syntax
+Plug 'lumiliet/vim-twig' "twig syntax
+Plug 'nikvdp/ejs-syntax' "ejs syntax
 
 "COMPLETION
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
@@ -35,9 +39,8 @@ Plug 'w0rp/ale' "automatic linting
 Plug 'prettier/vim-prettier', { 'do': 'npm install' } "Pretty automatic javascript
 
 "FILE EXPLORER
-" Plug 'francoiscabrol/ranger.vim' "file explorer
-" Plug 'rbgrouleff/bclose.vim' "needed by ranger.vim in neovim
 Plug 'scrooloose/nerdtree'
+Plug 'orderthruchaos/sbd.vim' "smart buffer delete fixes :bd in default nerdtree
 
 "SEARCH
 Plug 'jremmen/vim-ripgrep'
@@ -51,7 +54,7 @@ call plug#end()
 set hidden "files will be hidden and not closed when buffer changes
 set encoding=utf8
 set title "set filename in window title tab
-set clipboard=unnamedplus "use system clipboard for yank
+set scrolloff=8 "always have 8 lines visible when scrolling down
 
 "BACKUP
 set nobackup "get rid of annoying ~file
@@ -60,7 +63,6 @@ set noswapfile
 
 "MAP
 inoremap jj <ESC>
-" nmap <F2> :Ranger<cr>
 nmap <F2> :NERDTreeFind<cr>
 
 "THEME
@@ -77,11 +79,6 @@ colorscheme badwolf
 " change comments to italic, must come after colorscheme
 highlight Comment gui=italic 
 
-"TABS
-" set expandtab "spaces instead of tabs
-" set shiftwidth=2 "one tab 2 spaces
-" set tabstop=2
-
 "SEARCH
 set showmatch "highlight search
 set hlsearch "highlight stays after search
@@ -91,25 +88,25 @@ let g:netrw_liststyle = 3 "tree list style
 let g:netrw_winsize=25 "winsize 25%
 let g:netrw_browse_split=4
 
-"AUTOSAVE
-" let g:auto_save=1
-
 "EASYMOTION
 "two characters easymotion line jumps
 nmap <Space> <Plug>(easymotion-s)
 
 "AIRLINE
 let g:airline#extensions#tabline#enabled=1 "enable tabline on the top
-let g:airline#extensions#tabline#formatter='unique_tail' "change default tabline format
+let g:airline#extensions#tabline#formatter='unique_tail_improved' "change default tabline format
 
 "CTRLP
 set wildignore+=*/_/*,*/node_modules/*,*/components/*,*.zip
 let g:ctrlp_working_path_mode='ra'
-nmap <F3> :CtrlPBuffer<cr>
+nmap <c-f> :CtrlPBuffer<cr>
 
 "DEOPLETE
 let g:deoplete#enable_at_startup=1
 let g:deoplete#sources#ternjs#omit_object_prototype=0 " Do not show object.prototype suggestions
+"deoplete lua support
+let g:deoplete#omni#input_patterns = {}
+let g:deoplete#omni#input_patterns.lua = '\w+|[^. *\t][.:]\w*'
 
 "ALE + ESLINT
 nmap <silent> <Right> :ALENext<cr>
@@ -117,3 +114,27 @@ nmap <silent> <Left> :ALEPrevious<cr>
 
 "NERDTREE
 let NERDTreeShowHidden=1 "show .hidden files
+
+"INDENT GUIDES
+let g:indent_guides_enable_on_vim_startup=1
+let g:indent_guides_auto_colors=0
+autocmd VimEnter,Colorscheme * :hi IndentGuidesOdd guibg=#32312f ctermbg=3
+autocmd VimEnter,Colorscheme * :hi IndentGuidesEven guibg=#454442 ctermbg=3
+
+"ALE
+let g:ale_sign_column_always=1 "always show gutter
+
+"PRETTIER
+let g:prettier#config#arrow_parens='always'
+let g:prettier#config#trailing_comma = 'none'
+let g:prettier#config#bracket_spacing = 'true'
+
+"SMOOTH SCROLL
+nnoremap <silent> <c-k> :call smooth_scroll#up(&scroll, 0, 2)<CR>
+nnoremap <silent> <c-j> :call smooth_scroll#down(&scroll, 0, 2)<CR>
+
+"LUA LOVE
+" set love2d errorformat
+set errorformat=Error:%*[^:]:\ %f:%l:%m,Error:\ %f:%l:%m,%f:%l:%m
+" set love as make program
+set makeprg=love\ .
