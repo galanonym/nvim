@@ -86,7 +86,7 @@ set hlsearch "highlight stays after search
 "NETRW
 let g:netrw_liststyle = 3 "tree list style
 let g:netrw_winsize=25 "winsize 25%
-let g:netrw_browse_split=4
+let g:netrw_browse_split=4 "open files in prev window
 
 "EASYMOTION
 "two characters easymotion line jumps
