@@ -54,7 +54,7 @@ call plug#end()
 set hidden "files will be hidden and not closed when buffer changes
 set encoding=utf8
 set title "set filename in window title tab
-set scrolloff=8 "always have 8 lines visible when scrolling down
+set scrolloff=999 "always stay in the middle when scrolling
 
 "BACKUP
 set nobackup "get rid of annoying ~file
@@ -141,3 +141,7 @@ set makeprg=love\ .
 
 "HTML
 imap <silent> <C-t> </<C-X><C-O>
+
+"SMART BUFFER DELETE
+"when running :bd run :Sbd
+cnoreabbrev bd Sbd
