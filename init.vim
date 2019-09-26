@@ -138,3 +138,6 @@ nnoremap <silent> <c-j> :call smooth_scroll#down(&scroll, 0, 2)<CR>
 set errorformat=Error:%*[^:]:\ %f:%l:%m,Error:\ %f:%l:%m,%f:%l:%m
 " set love as make program
 set makeprg=love\ .
+
+"HTML
+imap <silent> <C-t> </<C-X><C-O>
