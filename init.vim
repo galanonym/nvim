@@ -6,6 +6,7 @@ Plug 'sjl/badwolf' "colorscheme
 Plug 'tpope/vim-sensible' "sensible defaults
 Plug 'tpope/vim-unimpaired' "use [ and ] commands
 Plug 'tpope/vim-commentary' "use gcc to comment
+Plug 'wellle/targets.vim' "better targets
 Plug 'easymotion/vim-easymotion' "better line jumps
 
 "MISC
