@@ -73,6 +73,7 @@ syntax on "syntax highlight
 "matching bracets underlined instead of cursor changing
 hi MatchParen cterm=underline ctermbg=none ctermfg=none
 autocmd BufNewFile,BufRead * setlocal formatoptions-=cro "disable continuation of comments
+set guicursor=a:blinkon100 "cursor blinking
 
 "COLORSCHEME
 set termguicolors "add 256 color support
