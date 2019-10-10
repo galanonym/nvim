@@ -10,9 +10,10 @@ Plug 'tpope/vim-surround' "add you-surround commands
 Plug 'wellle/targets.vim' "better targets
 Plug 'easymotion/vim-easymotion' "better line jumps
 
-"AIRLINE
-Plug 'vim-airline/vim-airline' "better bottom line
-Plug 'vim-airline/vim-airline-themes' "add themes for airline
+"STATUSLINE
+Plug 'itchyny/lightline.vim' "bottom
+Plug 'mengelbrecht/lightline-bufferline' "top
+Plug '844196/lightline-badwolf.vim'
 
 "FUZZY
 Plug 'ctrlpvim/ctrlp.vim' "fuzzy search files and buffers
@@ -36,23 +37,24 @@ Plug 'farmergreg/vim-lastplace' "remember cursor position vertically
 Plug 'scrooloose/nerdtree'
 Plug 'orderthruchaos/sbd.vim' "smart buffer delete fixes :bd in default nerdtree
 
+"SEARCH
+Plug 'jremmen/vim-ripgrep'
+
 "SYNTAX
-Plug 'pangloss/vim-javascript' "javascript syntax
-Plug 'tbastos/vim-lua' "nicer lua syntax
-Plug 'lumiliet/vim-twig' "twig syntax
-Plug 'nikvdp/ejs-syntax' "ejs syntax
+Plug 'sheerun/vim-polyglot' "many syntaxes
+"Plug 'pangloss/vim-javascript' "javascript syntax
+"Plug 'tbastos/vim-lua' "nicer lua syntax
+"Plug 'lumiliet/vim-twig' "twig syntax
+"Plug 'nikvdp/ejs-syntax' "ejs syntax
 
 "COMPLETION
-Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-Plug 'carlitux/deoplete-ternjs', { 'for': ['javascript', 'javascript.jsx'] }
+"Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+"Plug 'carlitux/deoplete-ternjs', { 'for': ['javascript', 'javascript.jsx'] }
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
 "LINTING
 Plug 'w0rp/ale' "automatic linting
 Plug 'prettier/vim-prettier', { 'do': 'npm install' } "Pretty automatic javascript
-
-
-"SEARCH
-Plug 'jremmen/vim-ripgrep'
 
 "SNIPPETS
 Plug 'SirVer/ultisnips' "snippets
@@ -121,25 +123,25 @@ au VimEnter * wincmd =
 "then move to first splits
 au VimEnter * wincmd l
 
-"AIRLINE
-let g:airline#extensions#tabline#enabled=1 "enable tabline on the top
-let g:airline#extensions#tabline#formatter='unique_tail_improved' "change default tabline format
-
 "CTRLP
 set wildignore+=*/_/*,*/node_modules/*,*/components/*,*.zip
 let g:ctrlp_working_path_mode='ra'
 nmap <c-f> :CtrlPBuffer<cr>
 
-"DEOPLETE
-let g:deoplete#enable_at_startup=1
-let g:deoplete#sources#ternjs#omit_object_prototype=0 " Do not show object.prototype suggestions
-"deoplete lua support
-let g:deoplete#omni#input_patterns = {}
-let g:deoplete#omni#input_patterns.lua = '\w+|[^. *\t][.:]\w*'
+"STATUSLINE
+set noshowmode "do not show --INSERT-- in status line
+set showtabline=2 "show tabline
+let g:lightline#bufferline#unnamed = '[No Name]' "default
+let g:lightline#bufferline#filename_modifier = ':t' "only filenames
+let g:lightline = {} "must have config
+let g:lightline.tabline = {'left': [['buffers']]}
+let g:lightline.component_expand = {'buffers': 'lightline#bufferline#buffers'}
+let g:lightline.component_type   = {'buffers': 'tabsel'}
+let g:lightline.colorscheme = 'badwolf'
 
-"ALE + ESLINT
-nmap <silent> <Right> :ALENext<cr>
-nmap <silent> <Left> :ALEPrevious<cr>
+"SMOOTH SCROLL
+nnoremap <silent> <c-k> :call smooth_scroll#up(10, 15, 1)<CR>
+nnoremap <silent> <c-j> :call smooth_scroll#down(10, 15, 1)<CR>
 
 "INDENT GUIDES
 let g:indent_guides_enable_on_vim_startup=1
@@ -147,30 +149,12 @@ let g:indent_guides_auto_colors=0
 autocmd VimEnter,Colorscheme * :hi IndentGuidesOdd guibg=#32312f ctermbg=3
 autocmd VimEnter,Colorscheme * :hi IndentGuidesEven guibg=#454442 ctermbg=3
 
-"ALE
-let g:ale_sign_column_always=1 "always show gutter
-
-"PRETTIER
-let g:prettier#config#arrow_parens='always'
-let g:prettier#config#trailing_comma = 'none'
-let g:prettier#config#bracket_spacing = 'true'
-
-"SMOOTH SCROLL
-nnoremap <silent> <c-k> :call smooth_scroll#up(&scroll, 0, 2)<CR>
-nnoremap <silent> <c-j> :call smooth_scroll#down(&scroll, 0, 2)<CR>
-
-"LUA LOVE
-" set love2d errorformat
-set errorformat=Error:%*[^:]:\ %f:%l:%m,Error:\ %f:%l:%m,%f:%l:%m
-" set love as make program
-set makeprg=love\ .
-
-"HTML
-imap <silent> <C-t> </<C-X><C-O>
-
 "SMART BUFFER DELETE
 "when running :bd run :Sbd
 cnoreabbrev bd Sbd
+
+"RIPGREP
+cnoreabbrev rg Rg
 
 "TERMINAL
 "esc mapping
@@ -198,3 +182,19 @@ augroup TerminalStuff
    au!
   autocmd TermOpen * setlocal nonumber norelativenumber
 augroup END
+
+
+"LANGUAGE SPECIFIC CONFIG
+
+"ALE + ESLINT
+nmap <silent> <Right> :ALENext<cr>
+nmap <silent> <Left> :ALEPrevious<cr>
+
+"PRETTIER
+let g:prettier#config#arrow_parens='always'
+let g:prettier#config#trailing_comma='none'
+let g:prettier#config#bracket_spacing='true'
+
+"HTML
+"insert ending tag automatically
+imap <silent> <C-t> </<C-X><C-O>

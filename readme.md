@@ -12,10 +12,6 @@ If :echo has("python3") returns 0
 
     >pip3 install --user neovim 
 
-Run for Deoplete
-
-    :UpdateRemotePlugins
-
 Install tern
 
     >npm install -g tern
@@ -29,6 +25,12 @@ Install ripgrep
     >cd ~/.temp
     >wget https://github.com/BurntSushi/ripgrep/releases/download/0.8.1/ripgrep_0.8.1_amd64.deb
     >sudo dpkg -i ripgrep_0.8.1_amd64.deb
+
+Configure Coc.vim
+
+    :CocInstall coc-tsserver coc-json
+    :CocConfig
+    { "coc.preferences.diagnostic.enable": false } - to disable diagnostics that we have with ALE
 
 ### Bindings to remember
 
@@ -45,34 +47,12 @@ RipGrep
     :Rg word - find word in files
     :Rg '\$some pattern' - find pattern in files
 
-Ranger
- 
-    <F2> - Load up Ranger
-
-Auto-Pairs
-
-    i'<m-e> - wrap world in '
-    i(<m-e> - wrap world in (
-    i{<m-e> - wrap world in {
-    etc.
-
-UltiSnips
-
-    <tab> - expand a snippet, f.eks. fun<tab>
-    <c-j> - jump to next trigger
-    <c-k> - jump to prev trigger
-
 CtrlP
 
-    <F3> - open CtrlP buffers
     <c-p> - open CtrlP
-    <c-f> - change mode when CtrlP is open
+    <c-f> - open CtrlP buffers
     <c-k> - move up when CtrlP is open
     <c-j> - move down when CtrlP is open
-
-Workspace
-
-    :ToggleWorkspace - creates .Session.vim and .undodir, saves everything from now on
 
 Prettier
 
@@ -81,12 +61,13 @@ Prettier
 
 ALE + ESLint
 
-    <l>aj - jump to next error 
-    <l>ak - jump to prev error 
+    <Right> - jump to next error 
+    <Left> - jump to prev error 
 
-Deoplete with Tern
+Smooth Scroll
 
-    .tern-project - remember to have a default .tern-project file in project root directory
+    <C-j> - scroll down
+    <C-k> - scroll up
 
 ```
 {
