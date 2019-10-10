@@ -24,11 +24,6 @@ Install eslint
 
     >npm install -g eslint eslint-plugin-import eslint-config-airbnb-base
 
-Install ranger
-
-    >sudo apt install ranger caca-utils highlight atool w3m poppler-utils mediainfo
-    >ranger --copy-config=scope
-
 Install ripgrep
 
     >cd ~/.temp
@@ -39,9 +34,9 @@ Install ripgrep
 
 Obsession
 
-    :Obsession .session - start session in .session file
+    :Obsession - start session and save it to Session.vim
     :Obsession! - delete session
-    :nvim -S .session - load session from file
+    :nvim -S - load session from Session.vim
 
 RipGrep
 

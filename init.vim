@@ -10,21 +10,31 @@ Plug 'tpope/vim-surround' "add you-surround commands
 Plug 'wellle/targets.vim' "better targets
 Plug 'easymotion/vim-easymotion' "better line jumps
 
-"MISC
-Plug 'tpope/vim-sleuth' "automatically set tabwidth
-Plug 'jiangmiao/auto-pairs' "autoclose brackets, quotes and parenthesis
-Plug 'ctrlpvim/ctrlp.vim' "fuzzy search files and buffers
+"AIRLINE
 Plug 'vim-airline/vim-airline' "better bottom line
 Plug 'vim-airline/vim-airline-themes' "add themes for airline
-Plug 'nathanaelkane/vim-indent-guides' "guidelines for indents
-Plug 'itchyny/vim-cursorword' "underline word under cursor
+
+"FUZZY
+Plug 'ctrlpvim/ctrlp.vim' "fuzzy search files and buffers
+
+"MORE FEATURES
+Plug 'tpope/vim-sleuth' "automatically set tabwidth
+Plug 'jiangmiao/auto-pairs' "autoclose brackets, quotes and parenthesis
 Plug 'tpope/vim-repeat' "more . repeats for other plugins
 Plug 'wesQ3/vim-windowswap' "swap window plugin
+
+"COSMETIC EXTRAS
+Plug 'nathanaelkane/vim-indent-guides' "guidelines for indents
+Plug 'itchyny/vim-cursorword' "underline word under cursor
 Plug 'terryma/vim-smooth-scroll' "smooth scroll
 
 "SESSIONS
 Plug 'tpope/vim-obsession' "manage sessions
 Plug 'farmergreg/vim-lastplace' "remember cursor position vertically
+
+"FILE EXPLORER
+Plug 'scrooloose/nerdtree'
+Plug 'orderthruchaos/sbd.vim' "smart buffer delete fixes :bd in default nerdtree
 
 "SYNTAX
 Plug 'pangloss/vim-javascript' "javascript syntax
@@ -40,9 +50,6 @@ Plug 'carlitux/deoplete-ternjs', { 'for': ['javascript', 'javascript.jsx'] }
 Plug 'w0rp/ale' "automatic linting
 Plug 'prettier/vim-prettier', { 'do': 'npm install' } "Pretty automatic javascript
 
-"FILE EXPLORER
-Plug 'scrooloose/nerdtree'
-Plug 'orderthruchaos/sbd.vim' "smart buffer delete fixes :bd in default nerdtree
 
 "SEARCH
 Plug 'jremmen/vim-ripgrep'
@@ -64,7 +71,8 @@ set noswapfile
 
 "MAP
 inoremap jj <ESC>
-nmap <F2> :NERDTreeFind<cr>
+"Open nerdtree and auto resize splits
+nmap <F2> :NERDTreeFind<cr><C-w>=
 "Fix & to preserve flags in normal mode
 nnoremap & :&&<CR> 
 "Fix & to preserve flags in visual mode
@@ -104,6 +112,15 @@ nmap <Space> <Plug>(easymotion-s)
 set exrc "execute .vimrc in project location
 set secure "do not allow dangerous commands
 
+"NERDTREE
+let NERDTreeShowHidden=1 "show .hidden files
+"startup NERDTree
+au VimEnter * NERDTree
+"then resize all splits
+au VimEnter * wincmd =
+"then move to first splits
+au VimEnter * wincmd l
+
 "AIRLINE
 let g:airline#extensions#tabline#enabled=1 "enable tabline on the top
 let g:airline#extensions#tabline#formatter='unique_tail_improved' "change default tabline format
@@ -123,9 +140,6 @@ let g:deoplete#omni#input_patterns.lua = '\w+|[^. *\t][.:]\w*'
 "ALE + ESLINT
 nmap <silent> <Right> :ALENext<cr>
 nmap <silent> <Left> :ALEPrevious<cr>
-
-"NERDTREE
-let NERDTreeShowHidden=1 "show .hidden files
 
 "INDENT GUIDES
 let g:indent_guides_enable_on_vim_startup=1
