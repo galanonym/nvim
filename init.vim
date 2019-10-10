@@ -6,6 +6,7 @@ Plug 'sjl/badwolf' "colorscheme
 Plug 'tpope/vim-sensible' "sensible defaults
 Plug 'tpope/vim-unimpaired' "use [ and ] commands
 Plug 'tpope/vim-commentary' "use gcc to comment
+Plug 'tpope/vim-surround' "add you-surround commands
 Plug 'wellle/targets.vim' "better targets
 Plug 'easymotion/vim-easymotion' "better line jumps
 
@@ -53,7 +54,6 @@ call plug#end()
 
 "BASICS
 set hidden "files will be hidden and not closed when buffer changes
-set encoding=utf8
 set title "set filename in window title tab
 set scrolloff=999 "always stay in the middle when scrolling
 
@@ -65,11 +65,14 @@ set noswapfile
 "MAP
 inoremap jj <ESC>
 nmap <F2> :NERDTreeFind<cr>
+"Fix & to preserve flags in normal mode
+nnoremap & :&&<CR> 
+"Fix & to preserve flags in visual mode
+xnoremap & :&&<CR> 
 
 "THEME
 set number "line numbers
 set cursorline "highlight line at cursor position
-syntax on "syntax highlight
 "matching bracets underlined instead of cursor changing
 hi MatchParen cterm=underline ctermbg=none ctermfg=none
 autocmd BufNewFile,BufRead * setlocal formatoptions-=cro "disable continuation of comments
@@ -85,14 +88,21 @@ highlight Comment gui=italic
 set showmatch "highlight search
 set hlsearch "highlight stays after search
 
+"WILDMENU
+set wildcharm=<Tab> "Allow usage of wildmenu in mappings
+set path+=** "adds recursive search to :find command
+
 "NETRW
-let g:netrw_liststyle = 3 "tree list style
-let g:netrw_winsize=25 "winsize 25%
-let g:netrw_browse_split=4 "open files in prev window
+let g:netrw_liststyle=3 "tree list style
+autocmd FileType netrw setl bufhidden=delete "fix netrw hanging buffer bug
 
 "EASYMOTION
 "two characters easymotion line jumps
 nmap <Space> <Plug>(easymotion-s)
+
+"ENABLE PROJECT VIMRC FILE
+set exrc "execute .vimrc in project location
+set secure "do not allow dangerous commands
 
 "AIRLINE
 let g:airline#extensions#tabline#enabled=1 "enable tabline on the top
