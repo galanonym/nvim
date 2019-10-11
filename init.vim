@@ -183,7 +183,7 @@ augroup END
 nmap <silent> <Right> <Plug>(coc-diagnostic-next)
 nmap <silent> <Left> <Plug>(coc-diagnostic-prev)
 " jump to definition
-nmap <c-]> <Plug>(coc-definition)
+nmap gd <Plug>(coc-definition)
 
 "PRETTIER
 let g:prettier#config#arrow_parens='always'
