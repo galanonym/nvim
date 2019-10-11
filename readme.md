@@ -12,10 +12,6 @@ If :echo has("python3") returns 0
 
     >pip3 install --user neovim 
 
-Install tern
-
-    >npm install -g tern
-
 Install eslint
 
     >npm install -g eslint eslint-plugin-import eslint-config-airbnb-base
@@ -26,11 +22,9 @@ Install ripgrep
     >wget https://github.com/BurntSushi/ripgrep/releases/download/0.8.1/ripgrep_0.8.1_amd64.deb
     >sudo dpkg -i ripgrep_0.8.1_amd64.deb
 
-Configure Coc.vim
+Configure Coc
 
-    :CocInstall coc-tsserver coc-json
-    :CocConfig
-    { "coc.preferences.diagnostic.enable": false } - to disable diagnostics that we have with ALE
+    :CocInstall coc-tsserver coc-json coc-eslint
 
 ### Bindings to remember
 
@@ -59,7 +53,7 @@ Prettier
     <l-p> - run prettier
     // @format - add this to top of a file to autorun on save
 
-ALE + ESLint
+Coc
 
     <Right> - jump to next error 
     <Left> - jump to prev error 

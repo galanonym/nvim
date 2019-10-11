@@ -42,18 +42,11 @@ Plug 'jremmen/vim-ripgrep'
 
 "SYNTAX
 Plug 'sheerun/vim-polyglot' "many syntaxes
-"Plug 'pangloss/vim-javascript' "javascript syntax
-"Plug 'tbastos/vim-lua' "nicer lua syntax
-"Plug 'lumiliet/vim-twig' "twig syntax
-"Plug 'nikvdp/ejs-syntax' "ejs syntax
 
 "COMPLETION
-"Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-"Plug 'carlitux/deoplete-ternjs', { 'for': ['javascript', 'javascript.jsx'] }
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
 "LINTING
-Plug 'w0rp/ale' "automatic linting
 Plug 'prettier/vim-prettier', { 'do': 'npm install' } "Pretty automatic javascript
 
 "SNIPPETS
@@ -186,9 +179,11 @@ augroup END
 
 "LANGUAGE SPECIFIC CONFIG
 
-"ALE + ESLINT
-nmap <silent> <Right> :ALENext<cr>
-nmap <silent> <Left> :ALEPrevious<cr>
+"COC
+nmap <silent> <Right> <Plug>(coc-diagnostic-next)
+nmap <silent> <Left> <Plug>(coc-diagnostic-prev)
+" jump to definition
+nmap <c-]> <Plug>(coc-definition)
 
 "PRETTIER
 let g:prettier#config#arrow_parens='always'
