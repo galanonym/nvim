@@ -36,7 +36,7 @@ Plug 'farmergreg/vim-lastplace' "remember cursor position vertically
 
 "FILE EXPLORER
 Plug 'scrooloose/nerdtree'
-Plug 'orderthruchaos/sbd.vim' "smart buffer delete fixes :bd in default nerdtree
+Plug 'moll/vim-bbye' "buffer delete without messing up layout
 
 "SYNTAX
 Plug 'sheerun/vim-polyglot' "many syntaxes
@@ -53,6 +53,7 @@ set hidden "files will be hidden and not closed when buffer changes
 set title "set filename in window title tab
 set scrolloff=999 "always stay in the middle when scrolling
 set splitright "open new vertical splits on the right
+set splitbelow "open new horizontal splits on the bottom
 
 "BACKUP
 set nobackup "get rid of annoying ~file
@@ -62,7 +63,7 @@ set noswapfile
 "MAP
 inoremap jj <ESC>
 "Open nerdtree and auto resize splits
-nmap <F2> :NERDTreeFind<cr><C-w>=
+nmap  <F2> :NERDTreeFind<cr><C-w>=
 "Fix & to preserve flags in normal mode
 nnoremap & :&&<CR> 
 "Fix & to preserve flags in visual mode
@@ -140,9 +141,10 @@ let g:indent_guides_auto_colors=0
 autocmd VimEnter,Colorscheme * :hi IndentGuidesOdd guibg=#32312f ctermbg=3
 autocmd VimEnter,Colorscheme * :hi IndentGuidesEven guibg=#454442 ctermbg=3
 
-"SMART BUFFER DELETE
+"BUFFER DELETE
 "when running :bd run :Sbd
-cnoreabbrev bd Sbd
+cnoreabbrev bd Bdelete!
+cnoreabbrev bw Bwipeout!
 
 "TERMINAL
 "esc mapping (that not conflicts with fzf)
