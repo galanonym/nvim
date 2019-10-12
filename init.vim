@@ -180,10 +180,19 @@ augroup END
 "LANGUAGE SPECIFIC CONFIG
 
 "COC
-nmap <silent> <Right> <Plug>(coc-diagnostic-next)
-nmap <silent> <Left> <Plug>(coc-diagnostic-prev)
-" jump to definition
-nmap gd <Plug>(coc-definition)
+" Use `[g` and `]g` to navigate diagnostics
+nmap <silent> [g <Plug>(coc-diagnostic-prev)
+nmap <silent> ]g <Plug>(coc-diagnostic-next)
+" Remap keys for gotos
+nmap <silent> gd <Plug>(coc-definition)
+" Remap for rename current word
+nmap <leader>rn <Plug>(coc-rename)
+" Lightline integration
+function! CocCurrentFunction()
+    return get(b:, 'coc_current_function', '')
+endfunction
+let g:lightline.active = {'left': [['mode', 'paste'], ['readonly', 'filename', 'modified', 'cocstatus', 'currentfunction']]}
+let g:lightline.component_function = {'cocstatus': 'coc#status', 'currentfunction': 'CocCurrentFunction'}
 
 "PRETTIER
 let g:prettier#config#arrow_parens='always'

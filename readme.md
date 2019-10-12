@@ -24,7 +24,11 @@ Install ripgrep
 
 Configure Coc
 
-    :CocInstall coc-tsserver coc-json coc-eslint
+    :CocInstall 
+    coc-tsserver coc-json coc-eslint - javascript
+    coc-html coc-css - html/css
+    coc-phpls - php
+    coc-highlight - highlight of hex colors
 
 ### Bindings to remember
 
@@ -55,8 +59,10 @@ Prettier
 
 Coc
 
-    <Right> - jump to next error 
-    <Left> - jump to prev error 
+    ]g - jump to next error 
+    [g - jump to prev error 
+    gd - jump to definition
+    <leader>rn - rename word in current buffer
 
 Smooth Scroll
 
