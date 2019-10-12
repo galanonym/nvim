@@ -16,7 +16,8 @@ Plug 'mengelbrecht/lightline-bufferline' "top
 Plug '844196/lightline-badwolf.vim'
 
 "FUZZY
-Plug 'ctrlpvim/ctrlp.vim' "fuzzy search files and buffers
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+Plug 'junegunn/fzf.vim'
 
 "MORE FEATURES
 Plug 'tpope/vim-sleuth' "automatically set tabwidth
@@ -37,9 +38,6 @@ Plug 'farmergreg/vim-lastplace' "remember cursor position vertically
 Plug 'scrooloose/nerdtree'
 Plug 'orderthruchaos/sbd.vim' "smart buffer delete fixes :bd in default nerdtree
 
-"SEARCH
-Plug 'jremmen/vim-ripgrep'
-
 "SYNTAX
 Plug 'sheerun/vim-polyglot' "many syntaxes
 
@@ -48,16 +46,13 @@ Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
 "LINTING
 Plug 'prettier/vim-prettier', { 'do': 'npm install' } "Pretty automatic javascript
-
-"SNIPPETS
-Plug 'SirVer/ultisnips' "snippets
-Plug 'honza/vim-snippets' "snippet library
 call plug#end()
 
 "BASICS
 set hidden "files will be hidden and not closed when buffer changes
 set title "set filename in window title tab
 set scrolloff=999 "always stay in the middle when scrolling
+set splitright "open new vertical splits on the right
 
 "BACKUP
 set nobackup "get rid of annoying ~file
@@ -116,10 +111,13 @@ au VimEnter * wincmd =
 "then move to first splits
 au VimEnter * wincmd l
 
-"CTRLP
-set wildignore+=*/_/*,*/node_modules/*,*/components/*,*.zip
-let g:ctrlp_working_path_mode='ra'
-nmap <c-f> :CtrlPBuffer<cr>
+"FZF
+nmap <c-p> :Files<cr>
+nmap <c-f> :Buffers<cr>
+nmap <c-h> :History<cr>
+nmap <c-g> :Rg<cr>
+"Make fzf use rg, and rebind ctrl-a to select all results
+command! -bang -nargs=* Rg call fzf#vim#grep("rg --column --line-number --no-heading --color=always --smart-case ".shellescape(<q-args>), 1, {'options': '--delimiter : --nth 4.. --bind ctrl-a:select-all,ctrl-d:deselect-all'}, <bang>0)
 
 "STATUSLINE
 set noshowmode "do not show --INSERT-- in status line
@@ -146,13 +144,12 @@ autocmd VimEnter,Colorscheme * :hi IndentGuidesEven guibg=#454442 ctermbg=3
 "when running :bd run :Sbd
 cnoreabbrev bd Sbd
 
-"RIPGREP
-cnoreabbrev rg Rg
-
 "TERMINAL
-"esc mapping
-tnoremap jj <C-\><C-n>
-tnoremap <Esc> <C-\><C-n>
+"esc mapping (that not conflicts with fzf)
+au TermOpen * tnoremap <Esc> <c-\><c-n>
+au FileType fzf tunmap <Esc>
+au TermOpen * tnoremap jj <c-\><c-n>
+au FileType fzf tunmap jj
 "fix colors
 let g:terminal_color_0  = '#2e3436'
 let g:terminal_color_1  = '#cc0000'
@@ -175,9 +172,6 @@ augroup TerminalStuff
    au!
   autocmd TermOpen * setlocal nonumber norelativenumber
 augroup END
-
-
-"LANGUAGE SPECIFIC CONFIG
 
 "COC
 " Use `[g` and `]g` to navigate diagnostics

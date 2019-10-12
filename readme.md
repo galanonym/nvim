@@ -32,30 +32,30 @@ Configure Coc
 
 ### Bindings to remember
 
+Smooth Scroll
+
+    <C-j> - scroll down
+    <C-k> - scroll up
+
 Obsession
 
     :Obsession - start session and save it to Session.vim
     :Obsession! - delete session
     :nvim -S - load session from Session.vim
 
-RipGrep
+FZF
 
-    :Rg - search for word under cursor
-    :ccl - close quickfix window
-    :Rg word - find word in files
-    :Rg '\$some pattern' - find pattern in files
+    <c-p> - open FZF
+    <c-f> - open FZF buffers
+    <c-h> - open FZF history
+    <c-k> - move up when FZF is open
+    <c-j> - move down when FZF is open
+    <cr> - open file
+    <c-v> - open file in vertical split when FZF is open
 
-CtrlP
-
-    <c-p> - open CtrlP
-    <c-f> - open CtrlP buffers
-    <c-k> - move up when CtrlP is open
-    <c-j> - move down when CtrlP is open
-
-Prettier
-
-    <l-p> - run prettier
-    // @format - add this to top of a file to autorun on save
+    <c-g> - open FZF rg
+    rg> 'oneWord - search for delimited word
+    <c-a><cr> - select all results and open in quickfix
 
 Coc
 
@@ -64,10 +64,10 @@ Coc
     gd - jump to definition
     <leader>rn - rename word in current buffer
 
-Smooth Scroll
+Prettier
 
-    <C-j> - scroll down
-    <C-k> - scroll up
+    <leader>p - run prettier
+    // @format - add this to top of a file to autorun on save
 
 ```
 {
