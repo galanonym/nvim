@@ -146,10 +146,8 @@ cnoreabbrev bd Sbd
 
 "TERMINAL
 "esc mapping (that not conflicts with fzf)
-au TermOpen * tnoremap <Esc> <c-\><c-n>
-au FileType fzf tunmap <Esc>
-au TermOpen * tnoremap jj <c-\><c-n>
-au FileType fzf tunmap jj
+tmap jj <c-\><c-n>
+
 "fix colors
 let g:terminal_color_0  = '#2e3436'
 let g:terminal_color_1  = '#cc0000'
