@@ -174,14 +174,14 @@ augroup TerminalStuff
 augroup END
 
 "COC
-" Use `[g` and `]g` to navigate diagnostics
+"Use `[g` and `]g` to navigate diagnostics
 nmap <silent> [g <Plug>(coc-diagnostic-prev)
 nmap <silent> ]g <Plug>(coc-diagnostic-next)
-" Remap keys for gotos
+"Remap keys for gotos
 nmap <silent> gd <Plug>(coc-definition)
-" Remap for rename current word
+"Remap for rename current word
 nmap <leader>rn <Plug>(coc-rename)
-" Lightline integration
+"Lightline integration
 function! CocCurrentFunction()
     return get(b:, 'coc_current_function', '')
 endfunction

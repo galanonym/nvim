@@ -1,3 +1,6 @@
 { 
-  "javascript.suggest.enabled": false
+  "javascript.suggest.enabled": false,
+  "diagnostic.errorSign": "X>",
+  "diagnostic.warningSign": "!>",
+  "diagnostic.infoSign": "i>"
 }
