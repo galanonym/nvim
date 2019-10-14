@@ -51,7 +51,7 @@ call plug#end()
 "BASICS
 set hidden "files will be hidden and not closed when buffer changes
 set title "set filename in window title tab
-set scrolloff=999 "always stay in the middle when scrolling
+set scrolloff=5 "always stay in the middle when scrolling
 set splitright "open new vertical splits on the right
 set splitbelow "open new horizontal splits on the bottom
 
@@ -115,7 +115,6 @@ au VimEnter * wincmd l
 "FZF
 nmap <c-p> :Files<cr>
 nmap <c-f> :Buffers<cr>
-nmap <c-h> :History<cr>
 nmap <c-g> :Rg<cr>
 "Make fzf use rg, and rebind ctrl-a to select all results
 command! -bang -nargs=* Rg call fzf#vim#grep("rg --column --line-number --no-heading --color=always --smart-case ".shellescape(<q-args>), 1, {'options': '--delimiter : --nth 4.. --bind ctrl-a:select-all,ctrl-d:deselect-all'}, <bang>0)
@@ -149,6 +148,10 @@ cnoreabbrev bw Bwipeout!
 "TERMINAL
 "esc mapping (that not conflicts with fzf)
 tmap jj <c-\><c-n>
+tmap <c-w>h <c-\><c-n><c-w>h
+tmap <c-w>l <c-\><c-n><c-w>l
+tmap <c-w>j <c-\><c-n><c-w>j
+tmap <c-w>k <c-\><c-n><c-w>k
 
 "fix colors
 let g:terminal_color_0  = '#2e3436'
