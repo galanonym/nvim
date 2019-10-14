@@ -68,6 +68,9 @@ nmap  <F2> :NERDTreeFind<cr><C-w>=
 nnoremap & :&&<CR> 
 "Fix & to preserve flags in visual mode
 xnoremap & :&&<CR> 
+"Copy to clipboard
+vnoremap  <leader>y  "+y
+nnoremap  <leader>y  "+y
 
 "THEME
 set number "line numbers
