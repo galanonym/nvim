@@ -32,6 +32,11 @@ Configure Coc
 
 ### Bindings to remember
 
+Custom
+
+    (insert) <C-t> - insert ending html tag automatically 
+    <leader>y - copy to clipboard
+
 Smooth Scroll
 
     <C-j> - scroll down
