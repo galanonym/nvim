@@ -54,6 +54,7 @@ set title "set filename in window title tab
 set scrolloff=5 "always stay in the middle when scrolling
 set splitright "open new vertical splits on the right
 set splitbelow "open new horizontal splits on the bottom
+set report=0 "aways show how many lines has changed
 
 "BACKUP
 set nobackup "get rid of annoying ~file
@@ -71,7 +72,15 @@ xnoremap & :&&<CR>
 "Copy to clipboard
 vnoremap  <leader>y  "+y
 nnoremap  <leader>y  "+y
+"use <C-j> for inserting new line in normal mode
+nnoremap <NL> i<CR><ESC> 
 
+"REPEAT SUBSTITUTION FIX
+"Fix & to preserve flags in normal mode
+nnoremap & :&&<CR> 
+"Fix & to preserve flags in visual mode
+xnoremap & :&&<CR> 
+ 
 "THEME
 set number "line numbers
 set cursorline "highlight line at cursor position
@@ -202,3 +211,8 @@ let g:prettier#config#bracket_spacing='true'
 "HTML
 "insert ending tag automatically
 imap <silent> <C-t> </<C-X><C-O>
+
+"PHP
+" set indenting as in html file, but colors like in php
+au BufReadPost *.php set filetype=html
+au BufReadPost *.php set syntax=php
