@@ -62,24 +62,18 @@ set nowb
 set noswapfile
 
 "MAP
+"Default ESC
 inoremap jj <ESC>
 "Open nerdtree and auto resize splits
 nmap  <F2> :NERDTreeFind<cr><C-w>=
-"Fix & to preserve flags in normal mode
+"Preserve substitution flags 
 nnoremap & :&&<CR> 
-"Fix & to preserve flags in visual mode
 xnoremap & :&&<CR> 
 "Copy to clipboard
 vnoremap  <leader>y  "+y
 nnoremap  <leader>y  "+y
 "use <C-j> for inserting new line in normal mode
 nnoremap <NL> i<CR><ESC> 
-
-"REPEAT SUBSTITUTION FIX
-"Fix & to preserve flags in normal mode
-nnoremap & :&&<CR> 
-"Fix & to preserve flags in visual mode
-xnoremap & :&&<CR> 
  
 "THEME
 set number "line numbers
