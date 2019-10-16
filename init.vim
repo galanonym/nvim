@@ -21,7 +21,7 @@ Plug 'junegunn/fzf.vim'
 
 "MORE FEATURES
 Plug 'tpope/vim-sleuth' "automatically set tabwidth
-Plug 'jiangmiao/auto-pairs' "autoclose brackets, quotes and parenthesis
+Plug 'cohama/lexima.vim' "autoclose brackets, quotes and parenthesis
 Plug 'tpope/vim-repeat' "more . repeats for other plugins
 Plug 'wesQ3/vim-windowswap' "swap window plugin
 
