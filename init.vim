@@ -122,7 +122,9 @@ au VimEnter * wincmd l
 nmap <c-p> :Files<cr>
 nmap <c-f> :Buffers<cr>
 nmap <c-g> :Rg<cr>
-"Make fzf use rg, and rebind ctrl-a to select all results
+"Make fzf use ripgrep to respect .ignore and .gitignore file
+let $FZF_DEFAULT_COMMAND='rg --files --smart-case'
+"Make fzf grep use rg, and rebind ctrl-a to select all results
 command! -bang -nargs=* Rg call fzf#vim#grep("rg --column --line-number --no-heading --color=always --smart-case ".shellescape(<q-args>), 1, {'options': '--delimiter : --nth 4.. --bind ctrl-a:select-all,ctrl-d:deselect-all'}, <bang>0)
 
 "STATUSLINE
