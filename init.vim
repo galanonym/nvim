@@ -65,8 +65,7 @@ set noswapfile
 "Default ESC
 inoremap jj <ESC>
 "Open nerdtree and auto resize splits
-nmap  <F2> :NERDTree<cr><C-w>=
-nmap  <F3> :NERDTreeFind<cr><C-w>=
+nmap  <F2> :NERDTreeFind<cr><C-w>=
 "Preserve substitution flags 
 nnoremap & :&&<CR> 
 xnoremap & :&&<CR> 
