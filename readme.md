@@ -22,11 +22,10 @@ Install ripgrep
 
 Configure Coc
 
-    :CocInstall 
-    coc-tsserver coc-json coc-eslint - javascript
-    coc-html coc-css - html/css
-    coc-phpls - php
-    coc-highlight - highlight of hex colors
+    :CocInstall coc-tsserver coc-json coc-eslint - javascript
+    :CocInstall coc-html coc-css - html/css
+    :CocInstall coc-phpls - php
+    :CocInstall coc-highlight - highlight of hex colors
 
 ### Bindings to remember
 
