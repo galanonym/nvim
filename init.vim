@@ -13,7 +13,7 @@ Plug 'easymotion/vim-easymotion' "better line jumps
 "STATUSLINE
 Plug 'itchyny/lightline.vim' "bottom
 Plug 'mengelbrecht/lightline-bufferline' "top
-Plug '844196/lightline-badwolf.vim'
+Plug '844196/lightline-badwolf.vim' "line theme
 
 "FUZZY
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
@@ -42,10 +42,10 @@ Plug 'moll/vim-bbye' "buffer delete without messing up layout
 Plug 'sheerun/vim-polyglot' "many syntaxes
 
 "COMPLETION
-Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'neoclide/coc.nvim', { 'branch': 'release' }
 
 "LINTING
-Plug 'prettier/vim-prettier', { 'do': 'npm install' } "Pretty automatic javascript
+Plug 'prettier/vim-prettier', { 'do': 'npm install', 'for': 'javascript' } "Pretty automatic javascript
 call plug#end()
 
 "BASICS
@@ -111,8 +111,6 @@ set secure "do not allow dangerous commands
 
 "NERDTREE
 let NERDTreeShowHidden=1 "show .hidden files
-"startup NERDTree
-au VimEnter * NERDTree
 "then resize all splits
 au VimEnter * wincmd =
 "then move to first splits
@@ -183,6 +181,12 @@ augroup TerminalStuff
    au!
   autocmd TermOpen * setlocal nonumber norelativenumber
 augroup END
+
+"AUTOREAD
+" Triger 'autoread' when files changes on disk
+autocmd FocusGained,BufEnter,CursorHold,CursorHoldI * if mode() != 'c' | checktime | endif
+" Notification after file change
+autocmd FileChangedShellPost * echohl WarningMsg | echo "File changed on disk. Buffer reloaded." | echohl None
 
 "COC
 "Use `[g` and `]g` to navigate diagnostics
