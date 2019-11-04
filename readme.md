@@ -8,9 +8,9 @@ Open nvim, ignore no plugin errors, run
 
     :PlugInstall
 
-If :echo has("python3") returns 0
+Run to debug potential python problems
 
-    >pip3 install --user neovim 
+    :healthcheck
 
 Install eslint
 
@@ -18,9 +18,7 @@ Install eslint
 
 Install ripgrep
 
-    >cd ~/.temp
-    >wget https://github.com/BurntSushi/ripgrep/releases/download/0.8.1/ripgrep_0.8.1_amd64.deb
-    >sudo dpkg -i ripgrep_0.8.1_amd64.deb
+    >sudo apt install ripgrep
 
 Configure Coc
 
