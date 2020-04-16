@@ -66,6 +66,10 @@ Coc
     gd - jump to definition
     <leader>rn - rename word in current buffer
 
+WindowSwap
+
+    <leader>ww - mark window to swap / swap marked window
+
 Prettier
 
     <leader>p - run prettier
