@@ -27,6 +27,8 @@ Configure Coc
     :CocInstall coc-phpls - php
     :CocInstall coc-highlight - highlight of hex colors
 
+    :CocConfig - settings are allready defined in this repo
+
 ### Bindings to remember
 
 Custom
