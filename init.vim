@@ -207,6 +207,7 @@ let g:lightline.component_function = {'cocstatus': 'coc#status', 'currentfunctio
 let g:prettier#config#arrow_parens='always'
 let g:prettier#config#trailing_comma='none'
 let g:prettier#config#bracket_spacing='true'
+let g:prettier#config#single_quote='true'
 
 "HTML
 "insert ending tag automatically
