@@ -55,6 +55,7 @@ set scrolloff=5 "always stay in the middle when scrolling
 set splitright "open new vertical splits on the right
 set splitbelow "open new horizontal splits on the bottom
 set report=0 "aways show how many lines has changed
+set lazyredraw "better scrolling
 
 "BACKUP
 set nobackup "get rid of annoying ~file
