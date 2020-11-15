@@ -56,6 +56,7 @@ set splitright "open new vertical splits on the right
 set splitbelow "open new horizontal splits on the bottom
 set report=0 "aways show how many lines has changed
 set lazyredraw "better scrolling
+set autoindent "automatic indenting when starting new line
 
 "BACKUP
 set nobackup "get rid of annoying ~file
