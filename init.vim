@@ -70,9 +70,8 @@ nmap  <F2> :NERDTreeFind<cr><C-w>=
 "Preserve substitution flags 
 nnoremap & :&&<CR> 
 xnoremap & :&&<CR> 
-"Copy to clipboard
-vnoremap  <leader>y  "+y
-nnoremap  <leader>y  "+y
+"Enable system clipboard
+nmap <F3> :set clipboard=unnamedplus<CR>
 "use <C-j> for inserting new line in normal mode
 nnoremap <NL> i<CR><ESC> 
  
