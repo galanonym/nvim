@@ -1,6 +1,7 @@
 { 
+  "eslint.enable": true,
   "javascript.validate.enable": false,
-  "javascript.suggest.enabled": false,
+  "javascript.suggest.enable": false,
   "diagnostic.errorSign": "X>",
   "diagnostic.warningSign": "!>",
   "diagnostic.infoSign": "i>"
