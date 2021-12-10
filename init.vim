@@ -29,6 +29,7 @@ Plug 'wesQ3/vim-windowswap' "swap window plugin
 Plug 'nathanaelkane/vim-indent-guides' "guidelines for indents
 Plug 'itchyny/vim-cursorword' "underline word under cursor
 Plug 'terryma/vim-smooth-scroll' "smooth scroll
+Plug 'ntpeters/vim-better-whitespace' "highlight unnessesary whitespace
 
 "SESSIONS
 Plug 'tpope/vim-obsession' "manage sessions
@@ -212,7 +213,12 @@ let g:prettier#config#single_quote='true'
 "HTML
 "insert ending tag automatically
 imap <silent> <C-t> </<C-X><C-O>
+"highlight both opening and closing tag, and text inside with same color
+highlight link htmlTagName htmlTag
+highlight link htmlEndTag htmlTag
 
 "PHP
 "always use autoindent in php files
 autocmd FileType php setlocal autoindent
+"highlight $ in PHP variable names as same color
+let php_var_selector_is_identifier=1
