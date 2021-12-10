@@ -33,7 +33,6 @@ Plug 'ntpeters/vim-better-whitespace' "highlight unnessesary whitespace
 
 "SESSIONS
 Plug 'tpope/vim-obsession' "manage sessions
-Plug 'farmergreg/vim-lastplace' "remember cursor position vertically
 
 "FILE EXPLORER
 Plug 'scrooloose/nerdtree'
@@ -57,6 +56,7 @@ set splitright "open new vertical splits on the right
 set splitbelow "open new horizontal splits on the bottom
 set report=0 "aways show how many lines has changed
 set lazyredraw "better scrolling
+set nostartofline "remember cursor position vertiaclly
 
 "BACKUP
 set nobackup "get rid of annoying ~file
@@ -68,14 +68,14 @@ set noswapfile
 inoremap jj <ESC>
 "Open nerdtree and auto resize splits
 nmap  <F2> :NERDTreeFind<cr><C-w>=
-"Preserve substitution flags 
-nnoremap & :&&<CR> 
-xnoremap & :&&<CR> 
+"Preserve substitution flags
+nnoremap & :&&<CR>
+xnoremap & :&&<CR>
 "Enable system clipboard
 nmap <F3> :set clipboard=unnamedplus<CR>
 "use <C-j> for inserting new line in normal mode
-nnoremap <NL> i<CR><ESC> 
- 
+nnoremap <NL> i<CR><ESC>
+
 "THEME
 set number "line numbers
 set cursorline "highlight line at cursor position
@@ -88,7 +88,7 @@ set guicursor=a:blinkon100 "cursor blinking
 set termguicolors "add 256 color support
 colorscheme badwolf
 " change comments to italic, must come after colorscheme
-highlight Comment gui=italic 
+highlight Comment gui=italic
 
 "SEARCH
 set showmatch "highlight search
