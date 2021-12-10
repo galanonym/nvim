@@ -30,6 +30,7 @@ Plug 'nathanaelkane/vim-indent-guides' "guidelines for indents
 Plug 'itchyny/vim-cursorword' "underline word under cursor
 Plug 'terryma/vim-smooth-scroll' "smooth scroll
 Plug 'ntpeters/vim-better-whitespace' "highlight unnessesary whitespace
+"Plug 'farmergreg/vim-lastplace' "remember cursor position after closing file
 
 "SESSIONS
 Plug 'tpope/vim-obsession' "manage sessions
