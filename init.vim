@@ -222,3 +222,5 @@ highlight link htmlEndTag htmlTag
 autocmd FileType php setlocal autoindent
 "highlight $ in PHP variable names as same color
 let php_var_selector_is_identifier=1
+"do not treat $ as seperate word
+autocmd FileType php setlocal iskeyword+=$
