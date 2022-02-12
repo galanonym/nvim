@@ -1,5 +1,9 @@
 ### Installation
 
+Use lastest stable release repo in Ubuntu
+
+    [Launchpad](https://launchpad.net/~neovim-ppa/+archive/ubuntu/stable)
+
 Run git clone in ~ folder
 
     >mkdir -p ~/.config/nvim && git clone https://github.com/galanonym/nvim.git ~/.config/nvim
