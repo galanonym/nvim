@@ -1,27 +1,33 @@
 call plug#begin()
 "COLORSCHEME
 Plug 'sjl/badwolf' "colorscheme
+Plug 'mhartington/oceanic-next' "colorscheme
 
 "ESSENTIAL
-Plug 'tpope/vim-sensible' "sensible defaults
+"Plug 'tpope/vim-sensible' "sensible defaults
 Plug 'tpope/vim-unimpaired' "use [ and ] commands
-Plug 'tpope/vim-commentary' "use gcc to comment
+"Plug 'tpope/vim-commentary' "use gcc to comment
+Plug 'tomtom/tcomment_vim' "use gcc to comment, supports PHP with HTML and CSS
 Plug 'tpope/vim-surround' "add you-surround commands
 Plug 'wellle/targets.vim' "better targets
 Plug 'easymotion/vim-easymotion' "better line jumps
+Plug 'ggandor/lightspeed.nvim' "better line jumps
 
 "STATUSLINE
 Plug 'itchyny/lightline.vim' "bottom
 Plug 'mengelbrecht/lightline-bufferline' "top
-Plug '844196/lightline-badwolf.vim' "line theme
+"Plug '844196/lightline-badwolf.vim' "line theme
 
 "FUZZY
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 
 "MORE FEATURES
-Plug 'tpope/vim-sleuth' "automatically set tabwidth
-Plug 'cohama/lexima.vim' "autoclose brackets, quotes and parenthesis
+"Plug 'tpope/vim-sleuth' "automatically set tabwidth -- better just use tabwidth 2
+"Plug 'cohama/lexima.vim' "autoclose brackets, quotes and parenthesis -- nvim autopairs is better
+Plug 'windwp/nvim-autopairs' "autoclose brackets, quotes and parenthesis
+Plug 'alvan/vim-closetag' "autoclose tags
+Plug 'AndrewRadev/tagalong.vim' "editing both open/close tags
 Plug 'tpope/vim-repeat' "more . repeats for other plugins
 Plug 'wesQ3/vim-windowswap' "swap window plugin
 
@@ -29,18 +35,22 @@ Plug 'wesQ3/vim-windowswap' "swap window plugin
 Plug 'nathanaelkane/vim-indent-guides' "guidelines for indents
 Plug 'itchyny/vim-cursorword' "underline word under cursor
 Plug 'terryma/vim-smooth-scroll' "smooth scroll
+"Plug 'karb94/neoscroll.nvim' "smooth scroll
+"Plug 'psliwka/vim-smoothie' "smooth scroll
 Plug 'ntpeters/vim-better-whitespace' "highlight unnessesary whitespace
 "Plug 'farmergreg/vim-lastplace' "remember cursor position after closing file
+Plug 'norcalli/nvim-colorizer.lua'
 
 "SESSIONS
-Plug 'tpope/vim-obsession' "manage sessions
+"Plug 'tpope/vim-obsession' "manage sessions
 
 "FILE EXPLORER
 Plug 'scrooloose/nerdtree'
 Plug 'moll/vim-bbye' "buffer delete without messing up layout
 
 "SYNTAX
-Plug 'sheerun/vim-polyglot' "many syntaxes
+"Plug 'sheerun/vim-polyglot' "many syntaxes - but collides with better-indent-support
+Plug 'captbaritone/better-indent-support-for-php-with-html' "indent CSS and JS in PHP files
 
 "COMPLETION
 Plug 'neoclide/coc.nvim', { 'branch': 'release' }
@@ -74,8 +84,6 @@ nnoremap & :&&<CR>
 xnoremap & :&&<CR>
 "Enable system clipboard
 nmap <F3> :set clipboard=unnamedplus<CR>
-"use <C-j> for inserting new line in normal mode
-nnoremap <NL> i<CR><ESC>
 
 "THEME
 set number "line numbers
@@ -87,9 +95,14 @@ set guicursor=a:blinkon100 "cursor blinking
 
 "COLORSCHEME
 set termguicolors "add 256 color support
-colorscheme badwolf
+colorscheme OceanicNext
 " change comments to italic, must come after colorscheme
 highlight Comment gui=italic
+
+"TABS
+set expandtab "spaces instead of tabs
+set shiftwidth=2 "one tab 2 spaces
+set tabstop=2
 
 "SEARCH
 set showmatch "highlight search
@@ -99,17 +112,9 @@ set hlsearch "highlight stays after search
 set wildcharm=<Tab> "Allow usage of wildmenu in mappings
 set path+=** "adds recursive search to :find command
 
-"NETRW
-let g:netrw_liststyle=3 "tree list style
-autocmd FileType netrw setl bufhidden=delete "fix netrw hanging buffer bug
-
 "EASYMOTION
 "two characters easymotion line jumps
 nmap <Space> <Plug>(easymotion-s)
-
-"ENABLE PROJECT VIMRC FILE
-set exrc "execute .vimrc in project location
-set secure "do not allow dangerous commands
 
 "NERDTREE
 let NERDTreeShowHidden=1 "show .hidden files
@@ -136,7 +141,7 @@ let g:lightline = {} "must have config
 let g:lightline.tabline = {'left': [['buffers']]}
 let g:lightline.component_expand = {'buffers': 'lightline#bufferline#buffers'}
 let g:lightline.component_type   = {'buffers': 'tabsel'}
-let g:lightline.colorscheme = 'badwolf'
+let g:lightline.colorscheme = 'oceanicnext'
 
 "SMOOTH SCROLL
 nnoremap <silent> <c-k> :call smooth_scroll#up(10, 15, 1)<CR>
@@ -145,44 +150,13 @@ nnoremap <silent> <c-j> :call smooth_scroll#down(10, 15, 1)<CR>
 "INDENT GUIDES
 let g:indent_guides_enable_on_vim_startup=1
 let g:indent_guides_auto_colors=0
-autocmd VimEnter,Colorscheme * :hi IndentGuidesOdd guibg=#32312f ctermbg=3
-autocmd VimEnter,Colorscheme * :hi IndentGuidesEven guibg=#454442 ctermbg=3
+autocmd VimEnter,Colorscheme * :hi IndentGuidesOdd guibg=#2d3d47 ctermbg=3
+autocmd VimEnter,Colorscheme * :hi IndentGuidesEven guibg=#3a4b55 ctermbg=3
 
 "BUFFER DELETE
 "when running :bd run :Sbd
 cnoreabbrev bd Bdelete!
 cnoreabbrev bw Bwipeout!
-
-"TERMINAL
-"esc mapping (that not conflicts with fzf)
-tmap jj <c-\><c-n>
-tmap <c-w>h <c-\><c-n><c-w>h
-tmap <c-w>l <c-\><c-n><c-w>l
-tmap <c-w>j <c-\><c-n><c-w>j
-tmap <c-w>k <c-\><c-n><c-w>k
-
-"fix colors
-let g:terminal_color_0  = '#2e3436'
-let g:terminal_color_1  = '#cc0000'
-let g:terminal_color_2  = '#4e9a06'
-let g:terminal_color_3  = '#c4a000'
-let g:terminal_color_4  = '#3465a4'
-let g:terminal_color_5  = '#75507b'
-let g:terminal_color_6  = '#0b939b'
-let g:terminal_color_7  = '#d3d7cf'
-let g:terminal_color_8  = '#555753'
-let g:terminal_color_9  = '#ef2929'
-let g:terminal_color_10 = '#8ae234'
-let g:terminal_color_11 = '#fce94f'
-let g:terminal_color_12 = '#729fcf'
-let g:terminal_color_13 = '#ad7fa8'
-let g:terminal_color_14 = '#00f5e9'
-let g:terminal_color_15 = '#eeeeec'
-"no line numbers
-augroup TerminalStuff
-   au!
-  autocmd TermOpen * setlocal nonumber norelativenumber
-augroup END
 
 "AUTOREAD
 " Triger 'autoread' when files changes on disk
@@ -212,16 +186,25 @@ let g:prettier#config#bracket_spacing='true'
 let g:prettier#config#single_quote='true'
 
 "HTML
-"insert ending tag automatically
-imap <silent> <C-t> </<C-X><C-O>
 "highlight both opening and closing tag, and text inside with same color
-highlight link htmlTagName htmlTag
-highlight link htmlEndTag htmlTag
+highlight! link htmlTagName htmlTag
+highlight! link htmlEndTag htmlTag
 
 "PHP
-"always use autoindent in php files
-autocmd FileType php setlocal autoindent
-"highlight $ in PHP variable names as same color
-let php_var_selector_is_identifier=1
+let php_var_selector_is_identifier=1 "highlight $ in PHP variable names as same color
 "do not treat $ as seperate word
-autocmd FileType php setlocal iskeyword+=$
+"autocmd FileType php setlocal iskeyword+=$
+
+"AUTOPAIRS
+"enable plugin
+lua require('nvim-autopairs').setup()
+
+"CLOSETAG
+let g:closetag_filenames = '*.html,*.php' "make closetag work with php files
+
+"COLORIZER
+"enable plugin
+lua require('colorizer').setup()
+
+"unbind vsplit so lightspeed works in nerdtree
+let NERDTreeMapOpenVSplit='\n'
