@@ -37,6 +37,7 @@ Plug 'ethanholz/nvim-lastplace' " Remember cursor position after closing file
 Plug 'norcalli/nvim-colorizer.lua' " Colorize hexdecimal values
 Plug 'nvim-treesitter/nvim-treesitter' " Needed for vim-matchup then supports one letter tags
 Plug 'andymass/vim-matchup' " Highlight html tags
+Plug 'jeffkreeftmeijer/vim-numbertoggle' " Not show relative numbers in not active split
 
 " SYNTAX
 Plug 'captbaritone/better-indent-support-for-php-with-html' " Indent mixed PHP/HTML/CSS
