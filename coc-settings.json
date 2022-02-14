@@ -1,7 +1,8 @@
-{ 
+{
   "eslint.enable": true,
   "javascript.validate.enable": false,
   "javascript.suggest.enable": false,
+  "diagnostic.checkCurrentLine": true,
   "diagnostic.errorSign": "X>",
   "diagnostic.warningSign": "!>",
   "diagnostic.infoSign": "i>"

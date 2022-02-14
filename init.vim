@@ -20,8 +20,8 @@ Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 
 " IMPROVMENTS
+Plug 'rlane/pounce.nvim' " Better line jumps, through all splits
 Plug 'wellle/targets.vim' " Better targets
-Plug 'phaazon/hop.nvim' " Better line jumps, through all splits
 Plug 'tpope/vim-repeat' " More . repeats for other plugins
 Plug 'wesQ3/vim-windowswap' " Swap window plugin
 Plug 'windwp/nvim-autopairs' " Autoclose brackets, quotes and parenthesis
@@ -43,6 +43,9 @@ Plug 'captbaritone/better-indent-support-for-php-with-html' " Indent mixed PHP/H
 
 " COMPLETION
 Plug 'neoclide/coc.nvim', { 'branch': 'release' }
+
+" AUTOSAVE
+Plug 'Pocco81/AutoSave.nvim'
 
 " LINTING
 " Plug 'prettier/vim-prettier', { 'do': 'npm install', 'for': ['javascript'] } " Pretty automatic
@@ -101,9 +104,20 @@ set hlsearch " Highlight stays after search
 set wildcharm=<Tab> " Allow usage of wildmenu in mappings
 set path+=** " Adds recursive search to :find command
 
-" HOP
-" Two characters easymotion line jumps
-nmap <Space> :HopChar2<cr>
+"POUNCE
+nmap <Space> <cmd>Pounce<cr>
+vmap <Space> <cmd>Pounce<CR>
+omap <Space> <cmd>Pounce<CR>
+lua <<EOF
+require('pounce').setup({
+  accept_keys = "NEIOHLUJKARSTDQWFPGYZXCVBM",
+  accept_best_key = "<enter>",
+})
+EOF
+highlight PounceMatch gui=bold guifg=#111111 guibg=#ffffff
+highlight PounceGap gui=bold guifg=#111111 guibg=#ffffff
+highlight PounceAccept gui=bold guifg=#111111 guibg=#ec5f67
+highlight PounceAcceptBest gui=bold guifg=#111111 guibg=#ec5f67
 
 " NERDTREE
 let NERDTreeShowHidden=1 " Show .hidden files
@@ -161,6 +175,7 @@ nmap <silent> ]g <Plug>(coc-diagnostic-next)
 nmap <silent> gd <Plug>(coc-definition)
 " Remap for rename current word
 nmap <leader>rn <Plug>(coc-rename)
+set signcolumn=number " Display error sign in number column
 " Lightline integration
 function! CocCurrentFunction()
     return get(b:, 'coc_current_function', '')
@@ -195,10 +210,6 @@ let g:closetag_filenames = '*.html,*.php' " Make closetag work with php files
 " Enable plugin
 lua require('colorizer').setup()
 
-" HOP
-" Enable plugin
-lua require('hop').setup({keys = 'arstdhneioqwfpgjluyzxcvbkm', char2_fallback_key = '<cr>', multi_windows = true, case_insensitive = false})
-
 " STAY CENTERED
 " Enable plugin
 lua require('stay-centered')
@@ -218,6 +229,26 @@ let g:matchup_matchpref.php = {'tagnameonly': 1} " Do not highlight tag attribut
 " LASTPLACE
 " Enable plugin
 lua require('nvim-lastplace').setup()
+
+" AUTOSAVE
+lua << EOF
+local autosave = require("autosave")
+autosave.setup({
+  enabled = true,
+  execution_message = function ()
+    return "AutoSave: saved at " .. vim.fn.strftime("%H:%M:%S")
+  end,
+  events = {"InsertLeave", "TextChanged"},
+  conditions = {
+    exists = true,
+    filename_is_not = {},
+    filetype_is_not = {"liquid"},
+    modifiable = true,
+  },
+  clean_command_line_interval = 1000,
+  debounce_delay = 500
+})
+EOF
 
 " WHY I'M NOT USING
 
