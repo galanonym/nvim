@@ -77,19 +77,22 @@ xnoremap & :&&<CR>
 " Enable system clipboard
 nmap <F3> :set clipboard=unnamedplus<CR>
 
-" THEME
-set number " Line numbers
-set cursorline " Highlight line at cursor position
-" Matching bracets underlined instead of cursor changing
-hi MatchParen cterm=underline ctermbg=none ctermfg=none
-autocmd BufNewFile,BufRead * setlocal formatoptions-=cro " Disable continuation of comments
-set guicursor=a:blinkon100 " Cursor blinking
-
 " COLORSCHEME
 set termguicolors " Add 256 color support
 colorscheme OceanicNext
 " Change comments to italic, must come after colorscheme
 highlight Comment gui=italic
+
+" THEME
+set relativenumber " Use relative line numbers
+set number " But also show current line number
+" Color of curren cursor line number
+highlight CursorLineNr guifg=#ffffff
+set cursorline " Highlight line at cursor position
+" Matching bracets underlined instead of cursor changing
+hi MatchParen cterm=underline ctermbg=none ctermfg=none
+autocmd BufNewFile,BufRead * setlocal formatoptions-=cro " Disable continuation of comments
+set guicursor=a:blinkon100 " Cursor blinking
 
 " TABS
 set expandtab " Spaces instead of tabs
@@ -105,19 +108,19 @@ set wildcharm=<Tab> " Allow usage of wildmenu in mappings
 set path+=** " Adds recursive search to :find command
 
 "POUNCE
-nmap <Space> <cmd>Pounce<cr>
-vmap <Space> <cmd>Pounce<CR>
-omap <Space> <cmd>Pounce<CR>
 lua <<EOF
 require('pounce').setup({
   accept_keys = "NEIOHLUJKARSTDQWFPGYZXCVBM",
   accept_best_key = "<enter>",
 })
 EOF
-highlight PounceMatch gui=bold guifg=#111111 guibg=#ffffff
-highlight PounceGap gui=bold guifg=#111111 guibg=#ffffff
-highlight PounceAccept gui=bold guifg=#111111 guibg=#ec5f67
-highlight PounceAcceptBest gui=bold guifg=#111111 guibg=#ec5f67
+nmap <Space> <cmd>Pounce<cr>
+vmap <Space> <cmd>Pounce<CR>
+omap <Space> <cmd>Pounce<CR>
+highlight PounceMatch gui=bold guifg=#444444 guibg=#999999
+highlight PounceGap gui=bold guifg=#444444 guibg=#999999
+highlight PounceAccept gui=bold guifg=#000000 guibg=#ffffff
+highlight PounceAcceptBest gui=bold guifg=#000000 guibg=#ffffff
 
 " NERDTREE
 let NERDTreeShowHidden=1 " Show .hidden files
@@ -271,3 +274,4 @@ EOF
 
 " SYNTAX
 " sheerun/vim-polyglot - many syntaxes - collides with better-indent-support
+
