@@ -38,6 +38,7 @@ Plug 'norcalli/nvim-colorizer.lua' " Colorize hexdecimal values
 Plug 'nvim-treesitter/nvim-treesitter' " Needed for vim-matchup then supports one letter tags
 Plug 'andymass/vim-matchup' " Highlight html tags
 Plug 'jeffkreeftmeijer/vim-numbertoggle' " Not show relative numbers in not active split
+Plug 'haya14busa/is.vim' " Clear search highlight automatically
 
 " SYNTAX
 Plug 'captbaritone/better-indent-support-for-php-with-html' " Indent mixed PHP/HTML/CSS
