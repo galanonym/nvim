@@ -20,13 +20,15 @@ Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 
 " IMPROVMENTS
-Plug 'rlane/pounce.nvim' " Better line jumps, through all splits
+" Plug 'rlane/pounce.nvim' " Better line jumps, through all splits
+Plug 'ggandor/lightspeed.nvim' " Faster line jumps
 Plug 'wellle/targets.vim' " Better targets
 Plug 'tpope/vim-repeat' " More . repeats for other plugins
 Plug 'wesQ3/vim-windowswap' " Swap window plugin
 Plug 'windwp/nvim-autopairs' " Autoclose brackets, quotes and parenthesis
 Plug 'alvan/vim-closetag' " Autoclose tags
 Plug 'AndrewRadev/tagalong.vim' " Editing both open/close tags
+Plug 'mg979/vim-visual-multi' " Multiple cursors
 
 " COSMETICS
 Plug 'arnamak/stay-centered.nvim' " Always center cursor vertically
@@ -109,20 +111,31 @@ set hlsearch " Highlight stays after search
 set wildcharm=<Tab> " Allow usage of wildmenu in mappings
 set path+=** " Adds recursive search to :find command
 
-"POUNCE
-lua <<EOF
-require('pounce').setup({
-  accept_keys = "NEIOHLUJKARSTDQWFPGYZXCVBM",
-  accept_best_key = "<enter>",
-})
-EOF
-nmap <Space> <cmd>Pounce<cr>
-vmap <Space> <cmd>Pounce<CR>
-omap <Space> <cmd>Pounce<CR>
-highlight PounceMatch gui=bold guifg=#444444 guibg=#999999
-highlight PounceGap gui=bold guifg=#444444 guibg=#999999
-highlight PounceAccept gui=bold guifg=#000000 guibg=#ffffff
-highlight PounceAcceptBest gui=bold guifg=#000000 guibg=#ffffff
+" "POUNCE
+" lua <<EOF
+" require('pounce').setup({
+"   accept_keys = "NEIOHLUJKARSTDQWFPGYZXCVBM",
+"   accept_best_key = "<enter>",
+" })
+" EOF
+" nmap <Space> <cmd>Pounce<cr>
+" vmap <Space> <cmd>Pounce<CR>
+" omap <Space> <cmd>Pounce<CR>
+" highlight PounceMatch gui=bold guifg=#444444 guibg=#999999
+" highlight PounceGap gui=bold guifg=#444444 guibg=#999999
+" highlight PounceAccept gui=bold guifg=#000000 guibg=#ffffff
+" highlight PounceAcceptBest gui=bold guifg=#000000 guibg=#ffffff
+
+" LIGHTSPEED
+noremap s s
+noremap S S
+nmap <Space> <Plug>Lightspeed_omni_s
+lua require'lightspeed'.opts.limit_ft_matches = 10
+lua require'lightspeed'.opts.ignore_case = true
+lua require'lightspeed'.opts.exit_after_idle_msecs = { labeled = 800, unlabeled = 2000 }
+" highlight LightspeedMaskedChar gui=bold guifg=#000000 guibg=#ffffff
+highlight LightspeedLabel gui=bold guifg=#000000 guibg=#f02077
+highlight LightspeedShortcut gui=bold guifg=#000000 guibg=#f02077
 
 " NERDTREE
 let NERDTreeShowHidden=1 " Show .hidden files
@@ -255,7 +268,10 @@ autosave.setup({
 })
 EOF
 
-" WHY I'M NOT USING
+" VISUAL MULTI
+let g:VM_theme = 'spacegray'
+
+" WHY I'M NOT USING:
 
 " ESSENTIAL
 " tpope/vim-sensible - no longer needed in neovim
