@@ -4,8 +4,8 @@ Plug 'mhartington/oceanic-next' " Colorscheme
 
 " ESSENTIAL
 Plug 'tpope/vim-unimpaired' " Use [ and ] commands
-Plug 'tomtom/tcomment_vim' " Use gcc to comment, supports PHP with HTML and CSS
 Plug 'tpope/vim-surround' " Add you-surround commands
+Plug 'tomtom/tcomment_vim' " Use gcc to comment, supports PHP with HTML and CSS
 
 " FILE EXPLORER
 Plug 'scrooloose/nerdtree' " File explorer
@@ -20,15 +20,15 @@ Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 
 " IMPROVMENTS
-" Plug 'rlane/pounce.nvim' " Better line jumps, through all splits
-Plug 'ggandor/lightspeed.nvim' " Faster line jumps
+Plug 'rlane/pounce.nvim' " Better line jumps, through all splits
+" Plug 'ggandor/lightspeed.nvim' " Faster line jumps
 Plug 'wellle/targets.vim' " Better targets
 Plug 'tpope/vim-repeat' " More . repeats for other plugins
 Plug 'wesQ3/vim-windowswap' " Swap window plugin
 Plug 'windwp/nvim-autopairs' " Autoclose brackets, quotes and parenthesis
 Plug 'alvan/vim-closetag' " Autoclose tags
 Plug 'AndrewRadev/tagalong.vim' " Editing both open/close tags
-Plug 'mg979/vim-visual-multi' " Multiple cursors
+Plug 'kqito/vim-easy-replace' " Better substitute
 
 " COSMETICS
 Plug 'arnamak/stay-centered.nvim' " Always center cursor vertically
@@ -39,7 +39,7 @@ Plug 'ethanholz/nvim-lastplace' " Remember cursor position after closing file
 Plug 'norcalli/nvim-colorizer.lua' " Colorize hexdecimal values
 Plug 'nvim-treesitter/nvim-treesitter' " Needed for vim-matchup then supports one letter tags
 Plug 'andymass/vim-matchup' " Highlight html tags
-Plug 'jeffkreeftmeijer/vim-numbertoggle' " Not show relative numbers in not active split
+Plug 'jeffkreeftmeijer/vim-numbertoggle' " Not show relatiFe numbers in not active split
 Plug 'haya14busa/is.vim' " Clear search highlight automatically
 
 " SYNTAX
@@ -73,11 +73,14 @@ set noswapfile
 " MAP
 " Default ESC
 inoremap jj <ESC>
-" Open nerdtree and auto resize splits
-nmap  <F2> :NERDTreeFind<cr><C-w>=
+" Swap those mappings
+nnoremap 0 ^
+nnoremap ^ 0
 " Preserve substitution flags
 nnoremap & :&&<CR>
 xnoremap & :&&<CR>
+" Open nerdtree and auto resize splits
+nmap  <F2> :NERDTreeFind<cr><C-w>=
 " Enable system clipboard
 nmap <F3> :set clipboard=unnamedplus<CR>
 
@@ -111,31 +114,30 @@ set hlsearch " Highlight stays after search
 set wildcharm=<Tab> " Allow usage of wildmenu in mappings
 set path+=** " Adds recursive search to :find command
 
-" "POUNCE
-" lua <<EOF
-" require('pounce').setup({
-"   accept_keys = "NEIOHLUJKARSTDQWFPGYZXCVBM",
-"   accept_best_key = "<enter>",
-" })
-" EOF
-" nmap <Space> <cmd>Pounce<cr>
-" vmap <Space> <cmd>Pounce<CR>
-" omap <Space> <cmd>Pounce<CR>
-" highlight PounceMatch gui=bold guifg=#444444 guibg=#999999
-" highlight PounceGap gui=bold guifg=#444444 guibg=#999999
-" highlight PounceAccept gui=bold guifg=#000000 guibg=#ffffff
-" highlight PounceAcceptBest gui=bold guifg=#000000 guibg=#ffffff
+" POUNCE
+lua <<EOF
+require('pounce').setup({
+  accept_keys = "NEIOHLUJKARSTDQWFPGYZXCVBM",
+  accept_best_key = "<enter>",
+})
+EOF
+nmap <Space> <cmd>Pounce<cr>
+vmap <Space> <cmd>Pounce<CR>
+omap <Space> <cmd>Pounce<CR>
+highlight PounceMatch gui=bold guifg=#888888 guibg=#888888
+highlight PounceGap gui=bold guifg=#888888 guibg=#888888
+highlight PounceAccept gui=bold guifg=#000000 guibg=#ffffff
+highlight PounceAcceptBest gui=bold guifg=#000000 guibg=#ffffff
 
 " LIGHTSPEED
-noremap s s
-noremap S S
-nmap <Space> <Plug>Lightspeed_omni_s
-lua require'lightspeed'.opts.limit_ft_matches = 10
-lua require'lightspeed'.opts.ignore_case = true
-lua require'lightspeed'.opts.exit_after_idle_msecs = { labeled = 800, unlabeled = 2000 }
-" highlight LightspeedMaskedChar gui=bold guifg=#000000 guibg=#ffffff
-highlight LightspeedLabel gui=bold guifg=#000000 guibg=#f02077
-highlight LightspeedShortcut gui=bold guifg=#000000 guibg=#f02077
+" noremap s s
+" noremap S S
+" nmap <Space> <Plug>Lightspeed_omni_s
+" lua require'lightspeed'.opts.limit_ft_matches = 10
+" lua require'lightspeed'.opts.ignore_case = true
+" lua require'lightspeed'.opts.exit_after_idle_msecs = { labeled = 800, unlabeled = 2000 }
+" highlight LightspeedLabel gui=bold guifg=#000000 guibg=#f02077
+" highlight LightspeedShortcut gui=bold guifg=#000000 guibg=#f02077
 
 " NERDTREE
 let NERDTreeShowHidden=1 " Show .hidden files
@@ -216,6 +218,7 @@ highlight! link htmlEndTag htmlTag
 let php_var_selector_is_identifier=1 " Highlight $ in PHP variable names as same color
 " Do not treat $ as seperate word
 " autocmd FileType php setlocal iskeyword+=$
+set iskeyword+=\- " Add - as keyword so autocomplete works on css-classes
 
 " AUTOPAIRS
 " Enable plugin
@@ -269,7 +272,11 @@ autosave.setup({
 EOF
 
 " VISUAL MULTI
-let g:VM_theme = 'spacegray'
+" let g:VM_theme = 'spacegray'
+
+" EASY REPLACE
+let g:easy_replace_launch_key = 'S'
+let g:easy_replace_launch_in_visual_key = 'S'
 
 " WHY I'M NOT USING:
 
@@ -283,7 +290,7 @@ let g:VM_theme = 'spacegray'
 " tpope/vim-sleuth - usually working with 2 spaces, not needed
 " cohama/lexima.vim - autoclose brackets - nvim-autopairs works better
 " windwp/nvim-ts-autotag - autoclose/edit tags - does not support indented newline when writing HTML tags in PHP files, but is better when editing one letter tags, because based on treesitter
-
+" mg979/vim-visual-multi - multiple cursors - very cumbersome to use, better use <c-v> + line number, and vim-easy-replace plugin
 " COSMETICS
 " itchyny/vim-cursorword - underline word under cursor - collides with vim-matchup
 
