@@ -64,11 +64,8 @@ set splitbelow " Open new horizontal splits on the bottom
 set report=0 " Aways show how many lines has changed
 set lazyredraw " Better scrolling
 set nostartofline " Remember cursor position vertiaclly
-
-" BACKUP
-set nobackup " Get rid of annoying ~file
-set nowb
-set noswapfile
+" Disable ex mode prompt
+nmap Q <nop>
 
 " MAP
 " Default ESC
@@ -83,6 +80,11 @@ xnoremap & :&&<CR>
 nmap  <F2> :NERDTreeFind<cr><C-w>=
 " Enable system clipboard
 nmap <F3> :set clipboard=unnamedplus<CR>
+
+" BACKUP
+set nobackup " Get rid of annoying ~file
+set nowb
+set noswapfile
 
 " COLORSCHEME
 set termguicolors " Add 256 color support
