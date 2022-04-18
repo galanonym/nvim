@@ -44,6 +44,7 @@ Plug 'haya14busa/is.vim' " Clear search highlight automatically
 
 " SYNTAX
 Plug 'captbaritone/better-indent-support-for-php-with-html' " Indent mixed PHP/HTML/CSS
+Plug 'jwalton512/vim-blade' " Blade support for Laravel
 
 " COMPLETION
 Plug 'neoclide/coc.nvim', { 'branch': 'release' }
@@ -73,6 +74,7 @@ inoremap jj <ESC>
 " Swap those mappings
 nnoremap 0 ^
 nnoremap ^ 0
+nnoremap <CR> i<CR><ESC>
 " Preserve substitution flags
 nnoremap & :&&<CR>
 xnoremap & :&&<CR>
@@ -115,6 +117,9 @@ set hlsearch " Highlight stays after search
 " WILDMENU
 set wildcharm=<Tab> " Allow usage of wildmenu in mappings
 set path+=** " Adds recursive search to :find command
+
+" WHITESPACE
+" autocmd BufWritePre * :%s/\s\+$//e " Remove all trailing whitespace
 
 " VISUAL SEARCH
 " Visual mode pressing * or # searches for the current selection
@@ -238,7 +243,7 @@ highlight! link htmlEndTag htmlTag
 let php_var_selector_is_identifier=1 " Highlight $ in PHP variable names as same color
 " Do not treat $ as seperate word
 " autocmd FileType php setlocal iskeyword+=$
-set iskeyword+=\- " Add - as keyword so autocomplete works on css-classes
+" set iskeyword+=\- " Add - as keyword so autocomplete works on css-classes
 
 " AUTOPAIRS
 " Enable plugin
@@ -295,8 +300,8 @@ EOF
 " let g:VM_theme = 'spacegray'
 
 " EASY REPLACE
-let g:easy_replace_launch_key = 'S'
-let g:easy_replace_launch_in_visual_key = 'S'
+let g:easy_replace_launch_key = '<c-s>'
+let g:easy_replace_launch_in_visual_key = '<c-s>'
 
 " WHY I'M NOT USING:
 
