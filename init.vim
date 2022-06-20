@@ -26,7 +26,7 @@ Plug 'wellle/targets.vim' " Better targets
 Plug 'tpope/vim-repeat' " More . repeats for other plugins
 Plug 'wesQ3/vim-windowswap' " Swap window plugin
 Plug 'windwp/nvim-autopairs' " Autoclose brackets, quotes and parenthesis
-Plug 'alvan/vim-closetag' " Autoclose tags
+" Plug 'alvan/vim-closetag' " Autoclose tags
 Plug 'AndrewRadev/tagalong.vim' " Editing both open/close tags
 Plug 'kqito/vim-easy-replace' " Better substitute
 
@@ -39,12 +39,12 @@ Plug 'ethanholz/nvim-lastplace' " Remember cursor position after closing file
 Plug 'norcalli/nvim-colorizer.lua' " Colorize hexdecimal values
 Plug 'nvim-treesitter/nvim-treesitter' " Needed for vim-matchup then supports one letter tags
 Plug 'andymass/vim-matchup' " Highlight html tags
-Plug 'jeffkreeftmeijer/vim-numbertoggle' " Not show relatiFe numbers in not active split
+Plug 'jeffkreeftmeijer/vim-numbertoggle' " Not show relative numbers in not active split
 Plug 'haya14busa/is.vim' " Clear search highlight automatically
 
 " SYNTAX
 Plug 'captbaritone/better-indent-support-for-php-with-html' " Indent mixed PHP/HTML/CSS
-Plug 'jwalton512/vim-blade' " Blade support for Laravel
+"Plug 'jwalton512/vim-blade' " Blade support for Laravel
 
 " COMPLETION
 Plug 'neoclide/coc.nvim', { 'branch': 'release' }
@@ -250,7 +250,7 @@ let php_var_selector_is_identifier=1 " Highlight $ in PHP variable names as same
 lua require('nvim-autopairs').setup()
 
 " CLOSETAG
-let g:closetag_filenames = '*.html,*.php' " Make closetag work with php files
+" let g:closetag_filenames = '*.html,*.php' " Make closetag work with php files
 
 " COLORIZER
 " Enable plugin
