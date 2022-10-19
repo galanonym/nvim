@@ -20,8 +20,11 @@ Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 
 " IMPROVMENTS
-Plug 'rlane/pounce.nvim' " Better line jumps, through all splits
+" Plug 'rlane/pounce.nvim' " Better line jumps, through all splits
+" Plug 'ggandor/leap.nvim' " Line jumps
 " Plug 'ggandor/lightspeed.nvim' " Faster line jumps
+" Plug 'phaazon/hop.nvim' " Faster line jumps
+Plug 'easymotion/vim-easymotion'
 Plug 'wellle/targets.vim' " Better targets
 Plug 'tpope/vim-repeat' " More . repeats for other plugins
 Plug 'wesQ3/vim-windowswap' " Swap window plugin
@@ -29,18 +32,22 @@ Plug 'windwp/nvim-autopairs' " Autoclose brackets, quotes and parenthesis
 " Plug 'alvan/vim-closetag' " Autoclose tags
 Plug 'AndrewRadev/tagalong.vim' " Editing both open/close tags
 Plug 'kqito/vim-easy-replace' " Better substitute
+" Plug 'wfxr/minimap.vim' " Minimap
+" Plug 'severin-lemaignan/vim-minimap' " Minimap
+" Plug 'Xuyuanp/scrollbar.nvim' " Scrollbar
+Plug 'dstein64/nvim-scrollview', { 'branch': 'main' }
 
 " COSMETICS
 Plug 'arnamak/stay-centered.nvim' " Always center cursor vertically
 Plug 'nathanaelkane/vim-indent-guides' " Guidelines for indents
-Plug 'terryma/vim-smooth-scroll' " Smooth scroll
+" Plug 'terryma/vim-smooth-scroll' " Smooth scroll
 Plug 'ntpeters/vim-better-whitespace' " Highlight unnessesary whitespace
 Plug 'ethanholz/nvim-lastplace' " Remember cursor position after closing file
 Plug 'norcalli/nvim-colorizer.lua' " Colorize hexdecimal values
 Plug 'nvim-treesitter/nvim-treesitter' " Needed for vim-matchup then supports one letter tags
 Plug 'andymass/vim-matchup' " Highlight html tags
 Plug 'jeffkreeftmeijer/vim-numbertoggle' " Not show relative numbers in not active split
-Plug 'haya14busa/is.vim' " Clear search highlight automatically
+"Plug 'haya14busa/is.vim' " Clear search highlight automatically
 
 " SYNTAX
 Plug 'captbaritone/better-indent-support-for-php-with-html' " Indent mixed PHP/HTML/CSS
@@ -50,7 +57,7 @@ Plug 'captbaritone/better-indent-support-for-php-with-html' " Indent mixed PHP/H
 Plug 'neoclide/coc.nvim', { 'branch': 'release' }
 
 " AUTOSAVE
-Plug 'Pocco81/AutoSave.nvim'
+" Plug 'Pocco81/AutoSave.nvim'
 
 " LINTING
 " Plug 'prettier/vim-prettier', { 'do': 'npm install', 'for': ['javascript'] } " Pretty automatic
@@ -79,7 +86,7 @@ nnoremap <CR> i<CR><ESC>
 nnoremap & :&&<CR>
 xnoremap & :&&<CR>
 " Open nerdtree and auto resize splits
-nmap  <F2> :NERDTreeFind<cr><C-w>=
+nmap  <F2> :NERDTreeFind<CR><C-w>=
 " Enable system clipboard
 nmap <F3> :set clipboard=unnamedplus<CR>
 
@@ -118,6 +125,9 @@ set hlsearch " Highlight stays after search
 set wildcharm=<Tab> " Allow usage of wildmenu in mappings
 set path+=** " Adds recursive search to :find command
 
+" AUTOCOMPLETE
+" set completeopt=menu,preview " Choose first element when pressing ctrl-p
+
 " WHITESPACE
 " autocmd BufWritePre * :%s/\s\+$//e " Remove all trailing whitespace
 
@@ -141,18 +151,18 @@ endfunction
 
 " POUNCE
 lua <<EOF
-require('pounce').setup({
-  accept_keys = "NEIOHLUJKARSTDQWFPGYZXCVBM",
-  accept_best_key = "<enter>",
-})
+-- require('pounce').setup({
+--   accept_keys = "NEIOHLUJKARSTDQWFPGYZXCVBM",
+--   accept_best_key = "<enter>",
+-- })
 EOF
-nmap <Space> <cmd>Pounce<cr>
-vmap <Space> <cmd>Pounce<CR>
-omap <Space> <cmd>Pounce<CR>
-highlight PounceMatch gui=bold guifg=#888888 guibg=#888888
-highlight PounceGap gui=bold guifg=#888888 guibg=#888888
-highlight PounceAccept gui=bold guifg=#000000 guibg=#ffffff
-highlight PounceAcceptBest gui=bold guifg=#000000 guibg=#ffffff
+" nmap <Space> <cmd>Pounce<cr>
+" vmap <Space> <cmd>Pounce<CR>
+" omap <Space> <cmd>Pounce<CR>
+" highlight PounceMatch gui=bold guifg=#888888 guibg=#888888
+" highlight PounceGap gui=bold guifg=#888888 guibg=#888888
+" highlight PounceAccept gui=bold guifg=#000000 guibg=#ffffff
+" highlight PounceAcceptBest gui=bold guifg=#000000 guibg=#ffffff
 
 " LIGHTSPEED
 " noremap s s
@@ -163,6 +173,17 @@ highlight PounceAcceptBest gui=bold guifg=#000000 guibg=#ffffff
 " lua require'lightspeed'.opts.exit_after_idle_msecs = { labeled = 800, unlabeled = 2000 }
 " highlight LightspeedLabel gui=bold guifg=#000000 guibg=#f02077
 " highlight LightspeedShortcut gui=bold guifg=#000000 guibg=#f02077
+
+" HOP
+lua <<EOF
+  -- require'hop'.setup()
+EOF
+" nmap <Space> :HopChar1MW<cr>
+" nmap <Space> :HopWordMW<cr>
+
+" EASYMOTION
+nmap <Space> <Plug>(easymotion-overwin-f)
+let g:EasyMotion_keys = 'tnseriaohdlpufyw;qgj,ckvzxTNSERIAOHDLPUFYWQGJCKVZX'
 
 " NERDTREE
 let NERDTreeShowHidden=1 " Show .hidden files
@@ -278,22 +299,22 @@ lua require('nvim-lastplace').setup()
 
 " AUTOSAVE
 lua << EOF
-local autosave = require("autosave")
-autosave.setup({
-  enabled = true,
-  execution_message = function ()
-    return "AutoSave: saved at " .. vim.fn.strftime("%H:%M:%S")
-  end,
-  events = {"InsertLeave", "TextChanged"},
-  conditions = {
-    exists = true,
-    filename_is_not = {},
-    filetype_is_not = {"liquid"},
-    modifiable = true,
-  },
-  clean_command_line_interval = 1000,
-  debounce_delay = 500
-})
+-- local autosave = require("autosave")
+-- autosave.setup({
+--   enabled = true,
+--   execution_message = function ()
+--     return "AutoSave: saved at " .. vim.fn.strftime("%H:%M:%S")
+--   end,
+--   events = {"InsertLeave", "TextChanged"},
+--   conditions = {
+--     exists = true,
+--     filename_is_not = {},
+--     filetype_is_not = {"liquid"},
+--     modifiable = true,
+--   },
+--   clean_command_line_interval = 1000,
+--   debounce_delay = 500
+-- })
 EOF
 
 " VISUAL MULTI
@@ -325,3 +346,26 @@ let g:easy_replace_launch_in_visual_key = '<c-s>'
 " SYNTAX
 " sheerun/vim-polyglot - many syntaxes - collides with better-indent-support
 
+" NEOVIDE
+if exists("g:neovide")
+  " Put anything you want to happen only in Neovide here
+  set guifont=Ubuntu\ Mono:h13
+  let g:neovide_scroll_animation_length = 0.08
+  let g:neovide_cursor_trail_size=0.1
+  let g:neovide_remember_window_size = v:true
+endif
+
+" MINIMAP
+" let g:minimap_width=31
+" let g:minimap_highlight_range=0
+
+" SCROLLBAR
+" augroup ScrollbarInit
+"   autocmd!
+"   autocmd WinScrolled,VimResized,QuitPre * silent! lua require('scrollbar').show()
+"   autocmd WinEnter,FocusGained           * silent! lua require('scrollbar').show()
+"   autocmd WinLeave,BufLeave,BufWinLeave,FocusLost            * silent! lua require('scrollbar').clear()
+" augroup end
+" let g:scrollbar_min_size = 1
+" let g:scrollbar_max_size = 50
+highlight ScrollView ctermbg=none guibg=#ffffff
