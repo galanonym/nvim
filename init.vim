@@ -56,9 +56,6 @@ Plug 'captbaritone/better-indent-support-for-php-with-html' " Indent mixed PHP/H
 " COMPLETION
 Plug 'neoclide/coc.nvim', { 'branch': 'release' }
 
-" AUTOSAVE
-" Plug 'Pocco81/AutoSave.nvim'
-
 " LINTING
 " Plug 'prettier/vim-prettier', { 'do': 'npm install', 'for': ['javascript'] } " Pretty automatic
 call plug#end()
@@ -124,9 +121,6 @@ set hlsearch " Highlight stays after search
 " WILDMENU
 set wildcharm=<Tab> " Allow usage of wildmenu in mappings
 set path+=** " Adds recursive search to :find command
-
-" AUTOCOMPLETE
-" set completeopt=menu,preview " Choose first element when pressing ctrl-p
 
 " WHITESPACE
 " autocmd BufWritePre * :%s/\s\+$//e " Remove all trailing whitespace
@@ -297,32 +291,12 @@ let g:matchup_matchpref.php = {'tagnameonly': 1} " Do not highlight tag attribut
 " Enable plugin
 lua require('nvim-lastplace').setup()
 
-" AUTOSAVE
-lua << EOF
--- local autosave = require("autosave")
--- autosave.setup({
---   enabled = true,
---   execution_message = function ()
---     return "AutoSave: saved at " .. vim.fn.strftime("%H:%M:%S")
---   end,
---   events = {"InsertLeave", "TextChanged"},
---   conditions = {
---     exists = true,
---     filename_is_not = {},
---     filetype_is_not = {"liquid"},
---     modifiable = true,
---   },
---   clean_command_line_interval = 1000,
---   debounce_delay = 500
--- })
-EOF
-
-" VISUAL MULTI
-" let g:VM_theme = 'spacegray'
-
 " EASY REPLACE
 let g:easy_replace_launch_key = '<c-s>'
 let g:easy_replace_launch_in_visual_key = '<c-s>'
+
+" SCROLLVIEW
+highlight ScrollView ctermbg=none guibg=#ffffff
 
 " WHY I'M NOT USING:
 
@@ -345,27 +319,3 @@ let g:easy_replace_launch_in_visual_key = '<c-s>'
 
 " SYNTAX
 " sheerun/vim-polyglot - many syntaxes - collides with better-indent-support
-
-" NEOVIDE
-if exists("g:neovide")
-  " Put anything you want to happen only in Neovide here
-  set guifont=Ubuntu\ Mono:h13
-  let g:neovide_scroll_animation_length = 0.08
-  let g:neovide_cursor_trail_size=0.1
-  let g:neovide_remember_window_size = v:true
-endif
-
-" MINIMAP
-" let g:minimap_width=31
-" let g:minimap_highlight_range=0
-
-" SCROLLBAR
-" augroup ScrollbarInit
-"   autocmd!
-"   autocmd WinScrolled,VimResized,QuitPre * silent! lua require('scrollbar').show()
-"   autocmd WinEnter,FocusGained           * silent! lua require('scrollbar').show()
-"   autocmd WinLeave,BufLeave,BufWinLeave,FocusLost            * silent! lua require('scrollbar').clear()
-" augroup end
-" let g:scrollbar_min_size = 1
-" let g:scrollbar_max_size = 50
-highlight ScrollView ctermbg=none guibg=#ffffff
