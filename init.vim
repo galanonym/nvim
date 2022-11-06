@@ -35,11 +35,11 @@ Plug 'kqito/vim-easy-replace' " Better substitute
 " Plug 'wfxr/minimap.vim' " Minimap
 " Plug 'severin-lemaignan/vim-minimap' " Minimap
 " Plug 'Xuyuanp/scrollbar.nvim' " Scrollbar
-Plug 'dstein64/nvim-scrollview', { 'branch': 'main' }
+Plug 'dstein64/nvim-scrollview', { 'branch': 'main' } " Scrollbar
 
 " COSMETICS
-Plug 'arnamak/stay-centered.nvim' " Always center cursor vertically
-Plug 'nathanaelkane/vim-indent-guides' " Guidelines for indents
+" Plug 'arnamak/stay-centered.nvim' " Always center cursor vertically
+" Plug 'nathanaelkane/vim-indent-guides' " Guidelines for indents
 " Plug 'terryma/vim-smooth-scroll' " Smooth scroll
 Plug 'ntpeters/vim-better-whitespace' " Highlight unnessesary whitespace
 Plug 'ethanholz/nvim-lastplace' " Remember cursor position after closing file
@@ -63,7 +63,7 @@ call plug#end()
 " BASICS
 set hidden " Files will be hidden and not closed when buffer changes
 set title " Set filename in window title tab
-set scrolloff=5 " Always stay in the middle when scrolling
+set scrolloff=20 " Always stay in the middle when scrolling
 set splitright " Open new vertical splits on the right
 set splitbelow " Open new horizontal splits on the bottom
 set report=0 " Aways show how many lines has changed
@@ -104,6 +104,7 @@ set number " But also show current line number
 " Color of curren cursor line number
 highlight CursorLineNr guifg=#ffffff
 set cursorline " Highlight line at cursor position
+set cursorcolumn " Highlight line at cursor position
 " Matching bracets underlined instead of cursor changing
 hi MatchParen cterm=underline ctermbg=none ctermfg=none
 autocmd BufNewFile,BufRead * setlocal formatoptions-=cro " Disable continuation of comments
@@ -273,7 +274,7 @@ lua require('colorizer').setup()
 
 " STAY CENTERED
 " Enable plugin
-lua require('stay-centered')
+" lua require('stay-centered')
 
 " MATCHUP
 " Better tagging with treesitter, it supports short tags like <p>
