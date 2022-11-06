@@ -6,7 +6,7 @@ Use lastest stable release repo in Ubuntu
 
 Run git clone in ~ folder
 
-    >mkdir -p ~/.config/nvim && git clone https://github.com/galanonym/nvim.git ~/.config/nvim
+    mkdir -p ~/.config/nvim && git clone https://github.com/galanonym/nvim.git ~/.config/nvim
 
 Open nvim, ignore no plugin errors, run
 
@@ -18,11 +18,11 @@ Run to debug potential python problems
 
 Install eslint
 
-    >npm install -g eslint eslint-plugin-import eslint-config-airbnb-base
+    npm install -g eslint eslint-plugin-import eslint-config-airbnb-base
 
 Install ripgrep
 
-    >sudo apt install ripgrep
+    sudo apt install ripgrep
 
 Configure Coc
 
