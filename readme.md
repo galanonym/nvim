@@ -14,7 +14,7 @@ Open nvim, ignore no plugin errors, run
 
 Run to debug potential python problems
 
-    :healthcheck
+    :checkhealth
 
 Install eslint
 
