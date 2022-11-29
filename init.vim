@@ -82,6 +82,8 @@ nnoremap <CR> i<CR><ESC>
 " Preserve substitution flags
 nnoremap & :&&<CR>
 xnoremap & :&&<CR>
+" Search and highlight do not jump
+nnoremap * *``
 " Open nerdtree and auto resize splits
 nmap  <F2> :NERDTreeFind<CR><C-w>=
 " Enable system clipboard
@@ -320,3 +322,14 @@ highlight ScrollView ctermbg=none guibg=#ffffff
 
 " SYNTAX
 " sheerun/vim-polyglot - many syntaxes - collides with better-indent-support
+
+" FUNCTION SIGNATURES
+" Use K to show documentation in preview window
+nnoremap <silent> K :call <SID>show_documentation()<CR>
+function! s:show_documentation()
+  if (index(['vim','help'], &filetype) >= 0)
+    execute 'h '.expand('<cword>')
+  else
+    call CocAction('doHover')
+  endif
+endfunction
