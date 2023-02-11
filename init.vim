@@ -86,8 +86,18 @@ xnoremap & :&&<CR>
 nnoremap * *``
 " Open nerdtree and auto resize splits
 nmap  <F2> :NERDTreeFind<CR><C-w>=
+
 " Enable system clipboard
-nmap <F3> :set clipboard=unnamedplus<CR>
+nmap <F3> :call ToggleClipboard()<cr>
+function! ToggleClipboard()
+  if &clipboard == "unnamedplus"
+    set clipboard=
+    echo "Clipboard Local"
+  else
+    set clipboard=unnamedplus
+    echo "Clipboard Global"
+  endif
+endfunction
 
 " BACKUP
 set nobackup " Get rid of annoying ~file
