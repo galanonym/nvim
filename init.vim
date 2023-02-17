@@ -89,6 +89,7 @@ nmap  <F2> :NERDTreeFind<CR><C-w>=
 
 " Enable system clipboard
 nmap <F3> :call ToggleClipboard()<cr>
+vmap <F3> :<C-u>call ToggleClipboard()<cr>gv
 function! ToggleClipboard()
   if &clipboard == "unnamedplus"
     set clipboard=
